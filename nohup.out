@@ -1,0 +1,19 @@
+Puma starting in single mode...
+* Puma version: 5.6.1 (ruby 2.7.2-p137) ("Birdie's Version")
+*  Min threads: 5
+*  Max threads: 5
+*  Environment: development
+*          PID: 7671
+* Listening on http://0.0.0.0:3000
+Use Ctrl-C to stop
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2022-01-30 03:56:59 +0000 ===
+- Goodbye!
+Puma starting in single mode...
+* Puma version: 5.6.1 (ruby 2.7.2-p137) ("Birdie's Version")
+*  Min threads: 5
+*  Max threads: 5
+*  Environment: development
+*          PID: 11427
+* Listening on http://0.0.0.0:3000
+Use Ctrl-C to stop
