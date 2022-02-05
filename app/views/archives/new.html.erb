@@ -1,7 +1,6 @@
 <div class="container">
 <h4> Import List </h4>
-<% a = Archive.all %>
-<%= a.first.fname %>
+
 <%= form_tag("import", :enctype =>"multipart/form-data") do %>
    <div class="row">
      <div class="field">
