@@ -4,15 +4,10 @@ skip_before_action :verify_authenticity_token
 protect_from_forgery with: :null_session
 
 def import
-	uploaded_csv = params[:file]
-end
-
-def test	
-  #uploaded_csv = params[:file]
-  csv_text = File.read("https://ernie-tpics.s3.amazonaws.com/Tpics-data.csv")
+  uploaded_csv = params[:file]	
+  csv_text = File.read(uploaded_csv)
 
   csv = CSV.parse(csv_text, :headers => true)
-  byebug
   csv.each do |row|
   row_hash = row.to_hash
 
