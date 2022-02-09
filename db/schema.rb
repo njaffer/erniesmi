@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_122029) do
+ActiveRecord::Schema.define(version: 2022_02_09_150317) do
 
   create_table "archives", force: :cascade do |t|
-    t.string "caption"
+    t.text "caption"
     t.string "fname"
     t.string "path"
     t.string "pdate"
