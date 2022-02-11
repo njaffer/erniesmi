@@ -7,7 +7,7 @@ class Devise::SessionsController < DeviseController
   prepend_before_action(only: [:create, :destroy]) { request.env["devise.skip_timeout"] = true }
   skip_before_action :verify_authenticity_token
   protect_from_forgery with: :null_session
-  
+
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)
