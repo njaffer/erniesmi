@@ -2,6 +2,10 @@ class ArchivesController < ApplicationController
 skip_before_action :verify_authenticity_token
 protect_from_forgery with: :null_session
 
+def search 
+	
+end	
+
 def import
   uploaded_csv = params[:file]	
   csv_text = File.read(uploaded_csv)

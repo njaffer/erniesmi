@@ -7,8 +7,8 @@ root 'home#index'
 
 resources :archives do
     collection do
-      get :new, :search, :test
-      post :save, :import, :searchlist
+      get :new, :advanced_search, :test, :search
+      post :save, :import, :searchlist, :search
     end
   end 
 end

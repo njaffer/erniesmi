@@ -1,8 +1,13 @@
 <div class="container">
-<h4> Search List </h4>
+<% all_archives =  Archive.all %>
+<h4> Search List: <%= all_archives.count %> archives found</h4>
+<% @page = params["page"] 
+   @page =1 ? @page.nil)
+%>
+<% Archive.order(created_at: :desc).limit(10).offset(@page * 20).each do |a| %>
 <p>
-<% a = Archive.all %>
-<%= a.count %>
-<%= a.first.fname %> 
+<%= a.fname %> 
 </p>
+<% end%>
+
 </div>
