@@ -7,13 +7,15 @@ protect_from_forgery with: :null_session
 def search 
 
   countysearch = params["countysearch"]
+  searchterm = params["searchterm"]
+  searchterm = "" if searchterm.nil?
+
   if (!countysearch.nil?)
     searchterm = params["county"]
 	str = "county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"	 
     @total_archives = Archive.where(str)
 	@archives = Archive.where(str).page params[:page]
-  else	
-	searchterm = params["searchterm"]
+  else		
 	if (searchterm.eql? "")
 	  @archives = Archive.order(:pyear).page params[:page]
 	  @total_archives = Archive.order(:pyear).page params[:page]
