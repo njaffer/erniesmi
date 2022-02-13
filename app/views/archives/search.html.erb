@@ -1,8 +1,76 @@
 <div class="container">
-<h4> Search List </h4>
-<p>
-<% a = Archive.all %>
-<%= a.count %>
-<%= a.first.fname %> 
-</p>
+<% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" %>  
+
+<h4> Search List: <%= @total_archives.count %> archives found</h4>
+<% 
+%>
+<% @archives.each do |a| %>
+<% fname_url = base_url+a.fname %>
+<% url = image_url(fname_url)%>
+<div class="card" style="width: 100%;">
+  
+   <div class="card-body">
+   	<div class="row">
+   		<div class="col-2">
+   			<p><%= link_to image_tag(url, style: 'height:40%;width:40%;'), {action: 'letter', controller: 'archives'} %>
+   			</p>
+
+   		</div>
+   		<div class="col-10">	
+    	<p class="card-title"><b>Title:</b> <%=a.caption%>  <%= link_to "Read More..", letter_archives_path(:id => a.id)  %>
+    	<br>
+    	<b>Year:</b> <%= a.pyear %> <br>
+    	<b>County:</b> 
+    	  <% if (!a.county.nil?) %>,
+    	    <%= link_to a.county, search_archives_path(:county => a.county, :countysearch=>1)  %>
+    	  <% end %>
+    	  <% if (!a.county1.nil?) %>,
+    	    <%= link_to a.county1, county_archives_path(:county => a.county1)  %>
+    	  <%end%> 
+    	  <% if (!a.county2.nil?) %>, 
+    	    <%= link_to a.county2, county_archives_path(:county => a.county2)  %> 
+    	  <%end%>
+    	  <% if (!a.county3.nil?) %>,
+    	    <%= link_to a.county3, county_archives_path(:county => a.county3)  %>
+    	  <%end%> 
+    	  <br>
+    	<b>City:</b> 
+    	  <%=a.city %> <% if (!a.city1.nil?) %>,<%end%> 
+    	  <%=a.city1 %> <% if (!a.city2.nil?) %>,<%end%> 
+    	  <%=a.city2 %> <% if (!a.city3.nil?) %>,<%end%> 
+    	  <%=a.city3 %><br>
+    	<b>Category:</b> 
+    	  <%=a.category %> <% if (!a.category1.nil?) %>,<%end%> 
+    	  <%=a.category1 %> <% if (!a.category2.nil?) %>,<%end%> 
+    	  <%=a.category2 %> <% if (!a.category3.nil?) %>,<%end%> 
+    	  <%=a.category3 %> <% if (!a.category4.nil?) %>,<%end%> 
+    	  <%=a.category4 %> <% if (!a.category5.nil?) %>,<%end%> 
+    	  <%=a.category5 %> <% if (!a.category6.nil?) %>,<%end%> 
+    	  <%=a.category6 %> <% if (!a.category7.nil?) %>,<%end%> 
+    	  <%=a.category7 %> <% if (!a.category8.nil?) %>,<%end%> 
+    	  <%=a.category8 %> <% if (!a.category9.nil?) %>,<%end%> 
+    	  <%=a.category9 %> <% if (!a.category10.nil?) %>,<%end%> 
+    	  <%=a.category10 %> <% if (!a.category11.nil?) %>,<%end%> 
+    	  <%=a.category11 %> <% if (!a.category12.nil?) %>,<%end%> 
+    	  <%=a.category12 %> <% if (!a.category13.nil?) %>,<%end%> 
+    	  <%=a.category13 %> <% if (!a.category14.nil?) %>,<%end%> 
+    	  <%=a.category14 %> <% if (!a.category15.nil?) %>,<%end%> 
+    	  <%=a.category15 %> <% if (!a.category16.nil?) %>,<%end%> 
+    	  <%=a.category16 %> <% if (!a.category17.nil?) %>,<%end%> 
+    	  <%=a.category17 %> <% if (!a.category18.nil?) %>,<%end%> 
+    	  <%=a.category18 %> <% if (!a.category19.nil?) %>,<%end%> 
+    	  <%=a.category19 %> <% if (!a.category20.nil?) %>,<%end%> 
+    	  <%=a.category20 %> 
+    	  <br>
+   		<b>Pages: </b>	
+   		
+    	</p>
+        </div>
+    </div>
+   </div>
+  </div>
+
+<% end%>
+<p align="center"><%= paginate @archives, window: 3 %></p>
+
 </div>
