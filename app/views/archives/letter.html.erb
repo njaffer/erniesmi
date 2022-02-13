@@ -1,0 +1,28 @@
+
+<div class ="container">
+	<% id = params[:id] 
+	   a = Archive.where("id=?",id)
+	   a = a.first
+	%>
+	<p><b>Title: </b><%= a.caption%></p> 
+	<% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" %>  
+	<% fname_url = base_url+a.fname %>
+	<% url = image_url(fname_url)%>
+	<p><%= image_tag(url, style: 'height:60%;width:60%;') %></p>
+
+
+</div>
+<div id="openseadragon1" style="width: 800px; height: 600px;"></div>
+<script src="/openseadragon/openseadragon.min.js"></script>
+
+<script type="text/javascript">
+    var viewer = OpenSeadragon({
+        id: "openseadragon1",
+        prefixUrl: "https://ernie-tpics.s3.amazonaws.com/tpics/",
+        navigatorDisplayRegionColor: '#000',
+        tileSources: {
+            type: 'image',
+            url:  '<%=url %>'
+        }
+    });
+</script>

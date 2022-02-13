@@ -2,8 +2,32 @@ class ArchivesController < ApplicationController
 skip_before_action :verify_authenticity_token
 protect_from_forgery with: :null_session
 
+
+
 def search 
-	
+
+  countysearch = params["countysearch"]
+  if (!countysearch.nil?)
+    searchterm = params["county"]
+	str = "county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"	 
+    @total_archives = Archive.where(str)
+	@archives = Archive.where(str).page params[:page]
+  else	
+	searchterm = params["searchterm"]
+	if (searchterm.eql? "")
+	  @archives = Archive.order(:pyear).page params[:page]
+	  @total_archives = Archive.order(:pyear).page params[:page]
+	else
+	  str = "caption LIKE '%"+searchterm+"%' OR county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"	
+	  str = str + "OR city LIKE '%"+searchterm+"%' OR city1 LIKE '%"+searchterm+"%' OR city2 LIKE '%"+searchterm+"%' OR city3 LIKE '%"+searchterm+"%'"
+	  str = str + "OR category LIKE '%"+searchterm+"%' OR category1 LIKE '%"+searchterm+"%' OR category2 LIKE '%"+searchterm+"%' OR category3 LIKE '%"+searchterm+"%' OR category4 LIKE '%"+searchterm+"%' OR category5 LIKE '%"+searchterm+"%'"
+	  str = str + "OR category6 LIKE '%"+searchterm+"%' OR category7 LIKE '%"+searchterm+"%' OR category8 LIKE '%"+searchterm+"%' OR category9 LIKE '%"+searchterm+"%' OR category10 LIKE '%"+searchterm+"%'"
+	  str = str + "OR category11 LIKE '%"+searchterm+"%' OR category12 LIKE '%"+searchterm+"%' OR category13 LIKE '%"+searchterm+"%' OR category14 LIKE '%"+searchterm+"%' OR category15 LIKE '%"+searchterm+"%' OR category16 LIKE '%"+searchterm+"%'"
+	  str = str + "OR category17 LIKE '%"+searchterm+"%' OR category18 LIKE '%"+searchterm+"%' OR category19 LIKE '%"+searchterm+"%' OR category20 LIKE '%"+searchterm+"%'"
+	  @total_archives = Archive.where(str)
+	  @archives = Archive.where(str).page params[:page]
+	end 
+  end	 
 end	
 
 def import
