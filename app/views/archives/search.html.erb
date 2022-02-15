@@ -1,7 +1,7 @@
 <div class="container">
 <% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" %>  
 
-<h4> Search List: <%= @total_archives.count %> archives found</h4>
+<h4>  <%= @total_archives.count %> archives found </h4><%= button_to "Advanced Search", advanced_search_archives_path, :method => "get" %>
 <% 
 %>
 <% @archives.each do |a| %>

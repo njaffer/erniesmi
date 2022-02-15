@@ -3,6 +3,141 @@ skip_before_action :verify_authenticity_token
 protect_from_forgery with: :null_session
 
 
+def advanced_search
+	@acategory = Acategory.all.order(:name)
+	@acounty = Acounty.all.order(:name)
+	@acity = Acity.all.order(:name)
+    @connector = ['AND', 'OR']
+    
+    @county = params["county"]
+    @county1 = params["county1"]
+    @county2 = params["county2"]
+    @county3 = params["county3"]
+    
+    @county = "" if @county.nil?
+    @county1 = "" if @county1.nil?
+    @county2 = "" if @county2.nil?
+    @county3 = "" if @county3.nil?
+
+    @city = params["city"]
+    @city1 = params["city1"]
+    @city2 = params["city2"]
+    @city3 = params["city3"]
+    
+    @city = "" if @city.nil?
+    @city1 = "" if @city1.nil?
+    @city2 = "" if @city2.nil?
+    @city3 = "" if @city3.nil?
+
+    @con1 = params["con1"]
+    @con11 = params["con11"]
+    @con12 = params["con12"]
+    @con13 = params["con13"]
+
+    @con2 = params["con2"]
+    @con21 = params["con21"]
+    @con22 = params["con22"]
+    @con23 = params["con23"]
+
+    @con3 = params["con3"]
+    @con31 = params["con31"]
+    @con32 = params["con32"]
+
+    @category = params["category"]
+    @category1 = params["category1"]
+  
+    
+    @category = "" if @category.nil?
+    @category1 = "" if @category1.nil?
+    @category2 = "" if @category2.nil?
+    @category3 = "" if @category3.nil?
+    
+
+  str = ""
+  str = str +  " county LIKE '%" + @county + "%'" if (!@county.eql? "")
+  str = str + " OR" + " county1 LIKE '%" + @county + "%'" if (!@county.eql? "")
+  str = str + " OR" + " county2 LIKE '%" + @county + "%'" if (!@county.eql? "")
+  str = str + " OR" + " county3 LIKE '%" + @county + "%'" if (!@county.eql? "")
+
+  str = str + @con1 + " county LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
+  str = str + " OR" + " county1 LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
+  str = str + " OR" + " county2 LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
+  str = str + " OR" + " county3 LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
+
+  str = str + @con11+ " county LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
+  str = str + " OR" + " county1 LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
+  str = str + " OR" + " county2 LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
+  str = str + " OR" + " county3 LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
+
+  str = str + @con12+ " county LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
+  str = str + " OR" + " county1 LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
+  str = str + " OR" + " county2 LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
+  str = str + " OR" + " county3 LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
+
+
+
+  str = str + @con13 + " city LIKE '%" + @city + "%'" if (!@city.eql? "")
+  str = str + @con2+ " city1 LIKE '%"+ @city1 + "%'"  if (!@city1.eql? "")
+  str = str + @con21+ " city2 LIKE '%"+ @city2 + "%'"  if (!@city2.eql? "")
+  str = str + @con22+ " city3 LIKE '%"+ @city3 + "%'"  if (!@city3.eql? "")
+
+
+
+  str = str + @con23 + " category1 LIKE '%" + @category + "%'" if (!@category.eql? "")
+  str = str + " OR" + " category2 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
+  str = str + " OR"+ " category3 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
+  str = str + " OR" + " category4 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
+  str = str + " OR" + " category5 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
+  str = str + " OR"+ " category6 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
+  str = str + " OR" + " category7 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
+  str = str + " OR" + " category8 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
+  str = str + " OR"+ " category9 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
+  str = str + " OR" + " category10 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
+
+  str = str + @con3 + " category1 LIKE '%" + @category1 + "%'" if (!@category1.eql? "")
+  str = str + " OR" + " category2 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
+  str = str + " OR"+ " category3 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
+  str = str + " OR"+ " category4 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
+  str = str + " OR" + " category5 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
+  str = str + " OR"+ " category6 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
+  str = str + " OR"+ " category7 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
+  str = str + " OR" + " category8 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
+  str = str + " OR"+ " category9 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
+  str = str + " OR"+ " category10 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
+
+  str = str + @con31 + " category1 LIKE '%" + @category2 + "%'" if (!@category2.eql? "")
+  str = str + " OR"+ " category2 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+  str = str + " OR"+ " category3 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+  str = str + " OR"+ " category4 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+  str = str + " OR"+ " category5 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+  str = str + " OR"+ " category6 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+  str = str + " OR"+ " category7 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+  str = str + " OR"+ " category8 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+  str = str + " OR"+ " category9 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+  str = str + " OR"+ " category10 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+ 
+  str = str + @con32 + " category1 LIKE '%" + @category3 + "%'" if (!@category3.eql? "")
+  str = str + " OR" + " category2 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+  str = str + " OR" + " category3 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+  str = str + " OR" + " category4 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+  str = str + " OR" + " category5 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+  str = str + " OR" + " category6 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+  str = str + " OR" + " category7 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+  str = str + " OR" + " category8 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+  str = str + " OR" + " category9 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+  str = str + " OR" + " category10 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+
+
+  @archives = Archive.where(str).page params[:page]
+  @total_archives = Archive.where(str)
+
+  if (@total_archives.nil?)
+  	@total_archives_count =0
+  else 	
+    @total_archives_count = @total_archives.count 
+  end  
+ 
+end	
 
 def search 
 
@@ -18,7 +153,7 @@ def search
   else		
 	if (searchterm.eql? "")
 	  @archives = Archive.order(:pyear).page params[:page]
-	  @total_archives = Archive.order(:pyear).page params[:page]
+	  @total_archives = Archive.order(:pyear)
 	else
 	  str = "caption LIKE '%"+searchterm+"%' OR county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"	
 	  str = str + "OR city LIKE '%"+searchterm+"%' OR city1 LIKE '%"+searchterm+"%' OR city2 LIKE '%"+searchterm+"%' OR city3 LIKE '%"+searchterm+"%'"
@@ -63,7 +198,7 @@ def import
 	county.append("Mackinac") if row_hash["Mackinac"] == "1"  
 	county.append("Macomb") if row_hash["Macomb"]== "1"  
 	county.append("Midland") if row_hash["Midland"] == "1"  
-	county.append("MonCounty") if row_hash["MonCounty"] == "1"  
+	county.append("Monroe") if row_hash["MonCounty"] == "1"  
 	county.append("Montcalm") if row_hash["Montcalm"] == "1"  
 	county.append("Oakland") if row_hash["Oakland"] == "1"  
 	county.append("Oceana") if row_hash["Oceana"] == "1"  
@@ -113,7 +248,7 @@ def import
 	c.append("German Language Letters") if row_hash["German"] =="1"
 	c.append("Ann Arbor Hampden Cancels") if row_hash["Hampden"] =="1"
 	c.append("Machine Cancels") if row_hash["MachCancels"] =="1"
-	c.append(" Manuscripts") if row_hash["Manuscript"] =="1"
+	c.append("Manuscripts") if row_hash["Manuscript"] =="1"
 	c.append("Maps") if row_hash["Map"]  =="1"
 	c.append("Michigan Stampless Letters") if row_hash["EMiS"] =="1"
 	c.append("Michigan Territorial") if row_hash["EMiT"] =="1"
