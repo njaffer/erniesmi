@@ -1,0 +1,42 @@
+<% id = params["id"] %>
+<% @one = Archive.where("id=?",id)
+@one = @one.first 
+
+%>
+<div class="container">
+  <h4> Edit an Archive</h4> 
+ 
+  <%= form_tag(save_archives_path, :enctype =>"multipart/form-data") do %>
+
+  <div class="card" style="width: 45rem; padding-left: 10px;">
+  <p>Title: <textarea name="title" row="3" cols="80"><%= @one.caption %></textarea></p>
+  </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p>Date:<br><input type="text" value="<%=@one.pdate%>"></p>
+  </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p>County: <%= @county_list%></p>
+  <p>Add County:<br>
+   <%= select_tag :county1 , options_from_collection_for_select(@acounty, "name", "name", @county), :include_blank => true   %></p>
+  </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;"> 
+  <p>City: <%= @city_list %></p> 
+  <p>Add City:<br>
+   <%= select_tag :county1 , options_from_collection_for_select(@acounty, "name", "name", @county), :include_blank => true   %></p>
+  </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;"> 
+  <p>Category: <%= @category_list %></p> 
+  <p>Add Category:<br>
+   <%= select_tag :county1 , options_from_collection_for_select(@acounty, "name", "name", @county), :include_blank => true   %></p>
+
+  </div>
+  
+  <div class="form-group" style="padding-top: 20px">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Update</button> 
+      <%#<button type="Reset" class="btn btn-secondary">Reset Form</button> %>
+    </div>
+  </div>
+
+  <% end %>
+</div>

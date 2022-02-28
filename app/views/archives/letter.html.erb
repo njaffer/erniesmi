@@ -1,12 +1,18 @@
 
 <div class ="container">
-	<% id = params[:id] 
+	<% 
+	   id = params[:id] 
 	   a = Archive.where("id=?",id)
 	   a = a.first
 	%>
 	<p><b>Title: </b><%= a.caption%></p> 
-	<% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" %>  
-	<% fname_url = base_url+a.fname %>
+	<% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" 
+	if (a.fname.nil?)
+    fname_url = "ernie.png"
+   else 
+    fname_url = base_url+a.fname 
+   end  
+	 %>
 	<% url = image_url(fname_url)%>
 	<p><%= image_tag(url, style: 'height:60%;width:60%;') %></p>
 

@@ -1,9 +1,26 @@
 class ArchivesController < ApplicationController
 skip_before_action :verify_authenticity_token
 protect_from_forgery with: :null_session
+include ApplicationHelper
 
+def edit
+	@acategory = Acategory.all.order(:name)
+	@acounty = Acounty.all.order(:name)
+	@acity = Acity.all.order(:name)
+	@county_list = concat_county 
+    @city_list = concat_city
+    @category_list = concat_category
+end	
+
+def update
+end
+	
+def show
+end
+	
 
 def advanced_search
+
 	@acategory = Acategory.all.order(:name)
 	@acounty = Acounty.all.order(:name)
 	@acity = Acity.all.order(:name)
@@ -141,8 +158,11 @@ end
 
 def search 
 
+  
   countysearch = params["countysearch"]
+  #countysearch.gsub("'", "\\\\'")
   searchterm = params["searchterm"]
+  searchterm = searchterm.gsub("'", "''")
   searchterm = "" if searchterm.nil?
 
   if (!countysearch.nil?)
@@ -340,4 +360,5 @@ def import
 
   def searchlist
   end  
+
 end

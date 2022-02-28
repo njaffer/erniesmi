@@ -49,6 +49,7 @@
 <% @archives.each do |a| %>
 <% fname_url = base_url+a.fname %>
 <% url = image_url(fname_url)%>
+<% access_level = check_current_access %>
 
 <div class="card" style="width: 100%;">
   <div class="card-title">
@@ -59,12 +60,16 @@
       <div class="col-2">
         <p><%= link_to image_tag(url, style: 'height:40%;width:40%;'), {action: 'letter', controller: 'archives'} %>
         </p>
+        <% if (access_level==1) %>
+          <p> <%= link_to "Edit", edit_archives_path(:id => a.id)  %></p>
+        <% end %>  
 
       </div>
       <div class="col-10">  
-      <p class="card-title"><b>Title:</b> <%=a.caption%>  <%= link_to "Read More..", letter_archives_path(:id => a.id)  %>
+      <p class="card-title"><b>Title:</b> <%=a.caption%>  <%= link_to " More..", letter_archives_path(:id => a.id)  %>
       <br>
       <b>Year:</b> <%= a.pyear %> <br>
+      <b>Date:</b> <%= a.pdate %> <br>
       <b>County:</b> 
         <% if (!a.county.nil?) %>,
           <%= link_to a.county, search_archives_path(:county => a.county, :countysearch=>1)  %>
