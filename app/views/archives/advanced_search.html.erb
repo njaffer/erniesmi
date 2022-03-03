@@ -47,7 +47,12 @@
 </div>
 <h4 style="margin-left: 10px; margin-top: 10px;">  <%= @total_archives_count %> archives found </h4>
 <% @archives.each do |a| %>
-<% fname_url = base_url+a.fname %>
+<% if (a.fname.nil?)
+    fname_url = "ernie.png"
+   else 
+    fname_url = base_url+a.fname 
+   end 
+%>
 <% url = image_url(fname_url)%>
 <% access_level = check_current_access %>
 
