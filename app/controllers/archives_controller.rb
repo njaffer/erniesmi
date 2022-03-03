@@ -162,8 +162,8 @@ def search
   countysearch = params["countysearch"]
   #countysearch.gsub("'", "\\\\'")
   searchterm = params["searchterm"]
-  searchterm = searchterm.gsub("'", "''")
   searchterm = "" if searchterm.nil?
+  searchterm = searchterm.gsub("'", "''")
 
   if (!countysearch.nil?)
     searchterm = params["county"]
