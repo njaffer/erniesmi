@@ -1,0 +1,51 @@
+<% #if (@approve_access) %>
+
+<div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="panel-title">User Accounts</h5>
+    </div>
+    <div class="card-body">
+  
+	<h6 class="panel-title">Update User Accounts</h6>
+	<%= form_tag(save_permit_index_path, :enctype =>"multipart/form-data") do  %>
+    <div class="row ml-1">
+      <div class="field">
+      Email:
+     <%= select_tag "uname", options_for_select(@uname)  %>
+      </div>
+    </div>
+
+    <div class="row ml-1">
+      <div class="field">
+      Role:
+     <%= select_tag "role", options_for_select(@all_levels)  %>
+      </div>
+    </div>
+
+    <div class="actions">
+        <%= submit_tag 'Assign Role' %>
+    </div>
+   <% end %>
+   <hr>
+    <%
+        @allp.each do |one_p|
+        pos = one_p.email.index("@")
+		pos = pos- 1
+		level_pos = @all_levels_val.find_index(one_p.level.to_s)
+		
+	%>
+		<p><b><%#= one_p.email[0..pos] %>
+    <%= one_p.email %>  
+    </b><br>
+			<% if (one_p.level ==0) %>
+				Super Admin
+			<% else %>
+			  <%= @all_levels[level_pos] %>	
+			<% end %>	
+		</p>
+	<% end %>
+	
+    </div>
+</div>     
+   
+<% #end %>
