@@ -32,18 +32,19 @@
     	<br>
     	<b>Year:</b> <%= a.pyear %> <br>
         <b>Date:</b> <%= a.pdate %> <br>
+        
     	<b>County:</b> 
     	  <% if (!a.county.nil?) %>,
     	    <%= link_to a.county, search_archives_path(:county => a.county, :countysearch=>1)  %>
     	  <% end %>
     	  <% if (!a.county1.nil?) %>,
-    	    <%= link_to a.county1, county_archives_path(:county => a.county1)  %>
+    	    <%= link_to a.county1, search_archives_path(:county => a.county1)  %>
     	  <%end%> 
     	  <% if (!a.county2.nil?) %>, 
-    	    <%= link_to a.county2, county_archives_path(:county => a.county2)  %> 
+    	    <%= link_to a.county2, search_archives_path(:county => a.county2)  %> 
     	  <%end%>
     	  <% if (!a.county3.nil?) %>,
-    	    <%= link_to a.county3, county_archives_path(:county => a.county3)  %>
+    	    <%= link_to a.county3, search_archives_path(:county => a.county3)  %>
     	  <%end%> 
     	  <br>
     	<b>City:</b> 
@@ -74,7 +75,11 @@
     	  <%=a.category19 %> <% if (!a.category20.nil?) %>,<%end%> 
     	  <%=a.category20 %> 
     	  <br>
-   		<b>Pages: </b>	
+   		  <%
+          associated = Archive.where("ptype=?",a.id)
+          associated_count = associated.count
+        %>
+        <b>Associated Pages: </b><%=associated_count%> <br> 
    		
     	</p>
         </div>

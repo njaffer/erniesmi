@@ -4554,6 +4554,11 @@
   dependencies:
     "wrappy" "1"
 
+"openseadragon@^3.0.0":
+  "integrity" "sha512-IIl90uMZ8mi+W4IWJ0W6/xyz2SCcHeEMT6U5dcAN7UYJYAXWLYbmu3diWzoz4KE0JvMXbXC5wjRoACdTVrgaog=="
+  "resolved" "https://registry.npmjs.org/openseadragon/-/openseadragon-3.0.0.tgz"
+  "version" "3.0.0"
+
 "opn@^5.5.0":
   "integrity" "sha512-PqHpggC9bLV0VeWcdKhkpxY+3JTzetLSqTCWL/z/tFIbI6G8JCjondXklT1JinczLz2Xib62sSp0T/gKT4KksA=="
   "resolved" "https://registry.npmjs.org/opn/-/opn-5.5.0.tgz"
