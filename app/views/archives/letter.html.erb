@@ -36,10 +36,8 @@
         <b>Date:</b> <%= @a.pdate %> <br>
 
         <b>County:</b> 
-    	  <% if (!@a.county.eql? "") %>
-    	    <%= link_to @a.county, search_archives_path(:county => @a.county, :countysearch=>1)  %>
-    	  <% end %>
-    	  <% if (!@a.county1.eql? "") %>,
+    	 
+    	  <% if (!@a.county1.eql? "") %>
     	    <%= link_to @a.county1, search_archives_path(:county => @a.county1)  %>
     	  <%end%> 
     	  <% if (!@a.county2.eql? "") %>, 
@@ -71,7 +69,7 @@
         <%end%> 
     	  <br>
     	<b>City:</b> 
-    	  <%=@a.city %> <% if (!@a.city1.eql? "") %>,<%end%> 
+    	  
     	  <%=@a.city1 %> <% if (!@a.city2.eql? "") %>,<%end%> 
     	  <%=@a.city2 %> <% if (!@a.city3.eql? "") %>,<%end%> 
     	  <%=@a.city3 %> <% if (!@a.city4.eql? "") %>,<%end%> 
@@ -85,7 +83,7 @@
         <%=@a.city11 %>
         <br>
     	<b>Category:</b> 
-    	  <%=@a.category %> <% if (!@a.category1.eql? "") %>,<%end%> 
+    	 
     	  <%=@a.category1 %> <% if (!@a.category2.eql? "") %>,<%end%> 
     	  <%=@a.category2 %> <% if (!@a.category3.eql? "") %>,<%end%> 
     	  <%=@a.category3 %> <% if (!@a.category4.eql? "") %>,<%end%> 
