@@ -45,6 +45,7 @@
   </div>
 <% end %>
 </div>
+<% if (!@archives.nil?) %>
 <h4 style="margin-left: 10px; margin-top: 10px;">  <%= @total_archives_count %> archives found </h4>
 <% @archives.each do |a| %>
 <% if (a.fname.nil?)
@@ -127,4 +128,5 @@
 
 <% end%>
 <p align="center"><%= paginate @archives, window: 3 %></p>
+<% end %>
 </div>	
