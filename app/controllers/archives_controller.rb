@@ -25,8 +25,10 @@ def save
 	a.pdate = params["pdate"]
 	a.pic_status = params["pic_status"]
 	a.cover_page = params["cover_page"]
+	a.price = params["pprice"]
+	a.cost = params["pcost"]
     
-    a.county = params["county"]
+    
     a.county1 = params["county1"]
     a.county2 = params["county2"]
     a.county3 = params["county3"]
@@ -37,8 +39,9 @@ def save
     a.county8 = params["county8"]
     a.county9 = params["county9"]
     a.county10 = params["county10"]
-
-    a.city = params["city"]
+    a.county = a.county1 + "," + a.county2 + "," + a.county3 + "," + a.county4 + "," + a.county5 
+    a.county =  a.county + "," + a.county6 + "," + a.county7 + "," + a.county8 + "," + a.county9 + "," + a.county10
+    
     a.city1 = params["city1"]
     a.city2 = params["city2"]
     a.city3 = params["city3"]
@@ -50,9 +53,10 @@ def save
     a.city9 = params["city9"]
     a.city10 = params["city10"] 
     a.city11 = params["city11"]
-
+    a.city = a.city1 + "," + a.city2 + "," + a.city3 + "," + a.city4 + "," + a.city5 + ","
+    a.city = a.city + a.city6 + "," + a.city7 + "," + a.city8 + "," + a.city9 + "," + a.city10
  
-    a.category = params["cat"]
+    
     a.category1 = params["cat1"]
     a.category2 = params["cat2"]
     a.category3 = params["cat3"]
@@ -73,6 +77,12 @@ def save
     a.category18 = params["cat18"]
     a.category19 = params["cat19"]
     a.category20 = params["cat20"]
+    a.category = a.category1 + "," + a.category2 + "," + a.category3 + "," + a.category4 + ","
+    a.category = a.category + "," + a.category5 + "," + a.category6 + "," + a.category7 + "," + a.category8 + ","
+    a.category = a.category + "," + a.category9 + "," + a.category10 + "," + a.category11 + "," + a.category12 + ","
+    a.category = a.category + "," + a.category13 + "," + a.category14 + "," + a.category15 + "," + a.category16 + ","
+    a.category = a.category + "," + a.category17 + "," + a.category18 + "," + a.category19 + "," + a.category20 
+    
     
 	a.save!
 end
@@ -124,6 +134,8 @@ def advanced_search
 
     @category = params["category"]
     @category1 = params["category1"]
+    @category2 = params["category2"]
+    @category3 = params["category3"]
   
     
     @category = "" if @category.nil?
@@ -134,79 +146,40 @@ def advanced_search
 
   str = ""
   str = str +  " county LIKE '%" + @county + "%'" if (!@county.eql? "")
-  str = str + " OR" + " county1 LIKE '%" + @county + "%'" if (!@county.eql? "")
-  str = str + " OR" + " county2 LIKE '%" + @county + "%'" if (!@county.eql? "")
-  str = str + " OR" + " county3 LIKE '%" + @county + "%'" if (!@county.eql? "")
-
   str = str + @con1 + " county LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
-  str = str + " OR" + " county1 LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
-  str = str + " OR" + " county2 LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
-  str = str + " OR" + " county3 LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
-
   str = str + @con11+ " county LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
-  str = str + " OR" + " county1 LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
-  str = str + " OR" + " county2 LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
-  str = str + " OR" + " county3 LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
-
   str = str + @con12+ " county LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
-  str = str + " OR" + " county1 LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
-  str = str + " OR" + " county2 LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
-  str = str + " OR" + " county3 LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
 
+    str = str + @con13 + " city LIKE '%" + @city + "%'" if (!@city.eql? "")
+    str = str + @con2+ " city LIKE '%"+ @city1 + "%'"  if (!@city1.eql? "")
+    str = str + @con21+ " city LIKE '%"+ @city2 + "%'"  if (!@city2.eql? "")
+    str = str + @con22+ " city LIKE '%"+ @city3 + "%'"  if (!@city3.eql? "")
+  
 
-
-  str = str + @con13 + " city LIKE '%" + @city + "%'" if (!@city.eql? "")
-  str = str + @con2+ " city1 LIKE '%"+ @city1 + "%'"  if (!@city1.eql? "")
-  str = str + @con21+ " city2 LIKE '%"+ @city2 + "%'"  if (!@city2.eql? "")
-  str = str + @con22+ " city3 LIKE '%"+ @city3 + "%'"  if (!@city3.eql? "")
-
-
-
-  str = str + @con23 + " category1 LIKE '%" + @category + "%'" if (!@category.eql? "")
-  str = str + " OR" + " category2 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
-  str = str + " OR"+ " category3 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
-  str = str + " OR" + " category4 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
-  str = str + " OR" + " category5 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
-  str = str + " OR"+ " category6 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
-  str = str + " OR" + " category7 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
-  str = str + " OR" + " category8 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
-  str = str + " OR"+ " category9 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
-  str = str + " OR" + " category10 LIKE '%"+ @category + "%'"  if (!@category.eql? "")
-
-  str = str + @con3 + " category1 LIKE '%" + @category1 + "%'" if (!@category1.eql? "")
-  str = str + " OR" + " category2 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
-  str = str + " OR"+ " category3 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
-  str = str + " OR"+ " category4 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
-  str = str + " OR" + " category5 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
-  str = str + " OR"+ " category6 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
-  str = str + " OR"+ " category7 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
-  str = str + " OR" + " category8 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
-  str = str + " OR"+ " category9 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
-  str = str + " OR"+ " category10 LIKE '%"+ @category1 + "%'"  if (!@category1.eql? "")
-
-  str = str + @con31 + " category1 LIKE '%" + @category2 + "%'" if (!@category2.eql? "")
-  str = str + " OR"+ " category2 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
-  str = str + " OR"+ " category3 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
-  str = str + " OR"+ " category4 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
-  str = str + " OR"+ " category5 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
-  str = str + " OR"+ " category6 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
-  str = str + " OR"+ " category7 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
-  str = str + " OR"+ " category8 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
-  str = str + " OR"+ " category9 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
-  str = str + " OR"+ " category10 LIKE '%"+ @category2 + "%'"  if (!@category2.eql? "")
+  @category = @category.gsub("'", "''")
+  @category1 = @category1.gsub("'", "''")
+  @category2 = @category2.gsub("'", "''")
+  @category3 = @category3.gsub("'", "''")
  
-  str = str + @con32 + " category1 LIKE '%" + @category3 + "%'" if (!@category3.eql? "")
-  str = str + " OR" + " category2 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
-  str = str + " OR" + " category3 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
-  str = str + " OR" + " category4 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
-  str = str + " OR" + " category5 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
-  str = str + " OR" + " category6 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
-  str = str + " OR" + " category7 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
-  str = str + " OR" + " category8 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
-  str = str + " OR" + " category9 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
-  str = str + " OR" + " category10 LIKE '%"+ @category3 + "%'"  if (!@category3.eql? "")
+  
 
+  str = str + @con23 + " category LIKE '%" + @category + "%'" if (!@category.eql? "")
+  str = str + @con3 + " category LIKE '%" + @category1 + "%'" if (!@category1.eql? "") 
+  str = str + @con31 + " category LIKE '%" + @category2 + "%'" if (!@category2.eql? "")  
+  str = str + @con32 + " category LIKE '%" + @category3 + "%'" if (!@category3.eql? "")
 
+  #check if str is starting with AND OR
+  substr = str[0,3]
+  if substr.eql? "AND"
+  	len = str.length - 4
+  	str = str.last(len)
+  end
+  substr = str[0,2]	
+  if substr.eql? "OR"
+  	len = str.length - 3
+  	str = str.last(len)
+  end
+  		
   @archives = Archive.where(str).page params[:page]
   @total_archives = Archive.where(str)
 
@@ -365,48 +338,87 @@ def import
 
 	a = Archive.new
 	 count = 0
-	 while count <= county.count
-	    a.county = county[count] if count ==0
-	    a.county1 = county[count] if count ==1
-	    a.county2 = county[count] if count ==2
-	    a.county3 = county[count] if count ==3
+	 tempstr = ""
+	 while count < county.count
+	    
+	    a.county1 = county[count] if count ==0
+	    a.county2 = county[count] if count ==1
+	    a.county3 = county[count] if count ==2
+	    a.county4 = county[count] if count ==3
+	    a.county5 = county[count] if count ==4
+	    a.county6 = county[count] if count ==5
+	    a.county7 = county[count] if count ==6
+
+	    if (tempstr.eql? "")
+		  tempstr = county[count]
+		else	
+		  tempstr = tempstr + ", " + county[count]
+		end 
 		count = count+1
+		  
 	 end
+     
+     a.county = tempstr
 
 	 count = 0
-	 while count <= city.count
-	    a.city = city[count] if count ==0
-	    a.city1 = city[count] if count ==1
-	    a.city2 = city[count] if count ==2
-	    a.city3 = city[count] if count ==3
-		count = count+1
-	 end
+	 tempstr =""
+	 while count < city.count
+	    
+	    a.city1 = city[count] if count == 0
+	    a.city2 = city[count] if count == 1
+	    a.city3 = city[count] if count == 2
+	    a.city4 = city[count] if count == 3
+	    a.city5 = city[count] if count == 4
+	    a.city6 = city[count] if count == 5
+	    a.city7 = city[count] if count == 6
+	    a.city8 = city[count] if count == 7 
+	    a.city9 = city[count] if count == 8
 
+	    if (tempstr.eql? "")
+		  tempstr = city[count]
+		else	
+		  tempstr = tempstr + ", " + city[count]
+		end 
+		count = count+1
+
+	 end
+      a.city = tempstr
+
+     tempstr ="" 
 	 count = 0
-	 while count <= c.count
-	    a.category = c[count] if count ==0
-	    a.category1 = c[count] if count ==1
-	    a.category2 = c[count] if count ==2
-	    a.category3 = c[count] if count ==3
-	    a.category4 = c[count] if count ==4
-	    a.category5 = c[count] if count ==5
-	    a.category6 = c[count] if count ==6
-	    a.category7 = c[count] if count ==7
-	    a.category8 = c[count] if count ==8
-	    a.category9 = c[count] if count ==9
-	    a.category10 = c[count] if count ==10
-	    a.category11 = c[count] if count == 11
-	    a.category12 = c[count] if count ==12
-	    a.category13 = c[count] if count ==13
-	    a.category14 = c[count] if count ==14
-	    a.category15 = c[count] if count == 15
-	    a.category16 = c[count] if count ==16
-	    a.category17 = c[count] if count ==17
-	    a.category18 = c[count] if count ==18
-	    a.category19 = c[count] if count ==19
-	    a.category20 = c[count] if count ==20
+	 while count < c.count
+	    
+	    a.category1 = c[count] if count ==0
+	    a.category2 = c[count] if count ==1
+	    a.category3 = c[count] if count ==2
+	    a.category4 = c[count] if count ==3
+	    a.category5 = c[count] if count ==4
+	    a.category6 = c[count] if count ==5
+	    a.category7 = c[count] if count ==6
+	    a.category8 = c[count] if count ==7
+	    a.category9 = c[count] if count ==8
+	    a.category10 = c[count] if count ==9
+	    a.category11 = c[count] if count == 10
+	    a.category12 = c[count] if count ==11
+	    a.category13 = c[count] if count ==12
+	    a.category14 = c[count] if count ==13
+	    a.category15 = c[count] if count == 14
+	    a.category16 = c[count] if count ==15
+	    a.category17 = c[count] if count ==16
+	    a.category18 = c[count] if count ==17
+	    a.category19 = c[count] if count ==18
+	    a.category20 = c[count] if count ==19
+
+	    if (tempstr.eql? "")
+		  tempstr = c[count]
+		else	
+		  tempstr = tempstr + ", " + c[count]
+		end 
+
 		count = count+1
 	 end
+	 a.category = tempstr
+
 	 #states
 		 a.state = "Indiana" if row_hash["Indiana"]=="1"
 		 a.options = "Exhibit" if row_hash["Exhibit"]=="1" 

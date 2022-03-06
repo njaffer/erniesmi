@@ -32,7 +32,10 @@
      <%= label_tag :category %>
     </div>
     <div class="col-sm-11" align="left"> 
-     <%= select_tag :category, options_from_collection_for_select(@acategory, "name", "name", @category) , :include_blank => true  %> <%= select_tag "con3", options_for_select(@connector,@con3)  %> <%= select_tag :category1, options_from_collection_for_select(@acategory, "name", "name", @category1) , :include_blank => true  %><%= select_tag "con31", options_for_select(@connector,@con31)  %> <%= select_tag :category2, options_from_collection_for_select(@acategory, "name", "name", @category2) , :include_blank => true  %><%= select_tag "con32", options_for_select(@connector,@con32)  %> <%= select_tag :category3, options_from_collection_for_select(@acategory, "name", "name", @category3) , :include_blank => true  %>
+     <%= select_tag :category, options_from_collection_for_select(@acategory, "name", "name", @category) , :include_blank => true  %> <%= select_tag "con3", options_for_select(@connector,@con3)  %> 
+     <%= select_tag :category1, options_from_collection_for_select(@acategory, "name", "name", @category1) , :include_blank => true  %><%= select_tag "con31", options_for_select(@connector,@con31)  %> 
+     <%= select_tag :category2, options_from_collection_for_select(@acategory, "name", "name", @category2) , :include_blank => true  %><%= select_tag "con32", options_for_select(@connector,@con32)  %>
+      <%= select_tag :category3, options_from_collection_for_select(@acategory, "name", "name", @category3) , :include_blank => true  %>
     </div>
     </div>
   
@@ -77,26 +80,50 @@
       <b>Year:</b> <%= a.pyear %> <br>
       <b>Date:</b> <%= a.pdate %> <br>
       <b>County:</b> 
-        <% if (!a.county.nil?) %>,
-          <%= link_to a.county, search_archives_path(:county => a.county, :countysearch=>1)  %>
-        <% end %>
-        <% if (!a.county1.nil?) %>,
-          <%= link_to a.county1, county_archives_path(:county => a.county1)  %>
+        
+        <% if (!a.county1.nil?) %>
+          <%= link_to a.county1, search_archives_path(:county => a.county1)  %>
         <%end%> 
         <% if (!a.county2.nil?) %>, 
-          <%= link_to a.county2, county_archives_path(:county => a.county2)  %> 
+          <%= link_to a.county2, search_archives_path(:county => a.county2)  %> 
         <%end%>
         <% if (!a.county3.nil?) %>,
-          <%= link_to a.county3, county_archives_path(:county => a.county3)  %>
+          <%= link_to a.county3, search_archives_path(:county => a.county3)  %>
+        <%end%> 
+         <% if (!a.county4.nil?) %>
+          <%= link_to a.county4, search_archives_path(:county => a.county4)  %>
+        <%end%> 
+        <% if (!a.county5.nil?) %>, 
+          <%= link_to a.county5, search_archives_path(:county => a.county5)  %> 
+        <%end%>
+        <% if (!a.county6.nil?) %>,
+          <%= link_to a.county6, search_archives_path(:county => a.county6)  %>
+        <%end%> 
+         <% if (!a.county7.nil?) %>
+          <%= link_to a.county7, search_archives_path(:county => a.county7)  %>
+        <%end%> 
+        <% if (!a.county8.nil?) %>, 
+          <%= link_to a.county8, search_archives_path(:county => a.county8)  %> 
+        <%end%>
+        <% if (!a.county9.nil?) %>,
+          <%= link_to a.county9, search_archives_path(:county => a.county9)  %>
+        <%end%> 
+        <% if (!a.county10.nil?) %>,
+          <%= link_to a.county10, search_archives_path(:county => a.county10)  %>
         <%end%> 
         <br>
       <b>City:</b> 
-        <%=a.city %> <% if (!a.city1.nil?) %>,<%end%> 
         <%=a.city1 %> <% if (!a.city2.nil?) %>,<%end%> 
         <%=a.city2 %> <% if (!a.city3.nil?) %>,<%end%> 
-        <%=a.city3 %><br>
+        <%=a.city3 %> <% if (!a.city4.nil?) %>,<%end%> 
+        <%=a.city4 %> <% if (!a.city5.nil?) %>,<%end%> 
+        <%=a.city5 %> <% if (!a.city6.nil?) %>,<%end%> 
+        <%=a.city6 %> <% if (!a.city7.nil?) %>,<%end%> 
+        <%=a.city7 %> <% if (!a.city8.nil?) %>,<%end%> 
+        <%=a.city8 %> <% if (!a.city9.nil?) %>,<%end%> 
+        <%=a.city9 %> <% if (!a.city10.nil?) %>,<%end%> 
+        <%=a.city10 %><br>
       <b>Category:</b> 
-        <%=a.category %> <% if (!a.category1.nil?) %>,<%end%> 
         <%=a.category1 %> <% if (!a.category2.nil?) %>,<%end%> 
         <%=a.category2 %> <% if (!a.category3.nil?) %>,<%end%> 
         <%=a.category3 %> <% if (!a.category4.nil?) %>,<%end%> 
@@ -118,6 +145,7 @@
         <%=a.category19 %> <% if (!a.category20.nil?) %>,<%end%> 
         <%=a.category20 %> 
         <br>
+      
       <b>Pages: </b>  
       
       </p>

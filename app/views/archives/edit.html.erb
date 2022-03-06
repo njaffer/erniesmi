@@ -24,10 +24,16 @@
   <div class="card" style="width: 45rem; padding-left: 10px;">
     <p>Date:<br><input name="pdate" type="text" value="<%=@one.pdate%>"></p>
   </div>
+   <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p>Cost:<br><input name="pcost" type="text" value="<%=@one.cost%>"></p>
+  </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p>Price:<br><input name="pprice" type="text" value="<%=@one.price%>"></p>
+  </div>
  
   <div class="card" style="width: 45rem; padding-left: 10px;">
-  <p>County:<br>
-   <%= select_tag :county , options_from_collection_for_select(@acounty, "name", "name", @one.county), :include_blank => true   %> 
+  <p>County: <%= @one.county %> <br>
+   
    <%= select_tag :county1 , options_from_collection_for_select(@acounty, "name", "name", @one.county1), :include_blank => true   %>
    <%= select_tag :county2 , options_from_collection_for_select(@acounty, "name", "name", @one.county2), :include_blank => true   %>
    <%= select_tag :county3 , options_from_collection_for_select(@acounty, "name", "name", @one.county3), :include_blank => true   %>
@@ -43,8 +49,8 @@
   </div>
   <div class="card" style="width: 45rem; padding-left: 10px;"> 
   
-  <p>City:<br>
-   <%= select_tag :city , options_from_collection_for_select(@acity, "name", "name", @one.city), :include_blank => true   %>
+  <p>City: <%=@one.city %><br>
+
    <%= select_tag :city1 , options_from_collection_for_select(@acity, "name", "name", @one.city1), :include_blank => true   %>
    <%= select_tag :city2 , options_from_collection_for_select(@acity, "name", "name", @one.city2), :include_blank => true   %>
    <%= select_tag :city3 , options_from_collection_for_select(@acity, "name", "name", @one.city3), :include_blank => true   %>
@@ -83,8 +89,8 @@
     @one.category19 = "" if @one.category19.nil?
     @one.category20 = "" if @one.category20.nil?
   %>
-  <p>Category:<br>
-   <%= select_tag :cat , options_from_collection_for_select(@acategory, "name", "name", @one.category), :include_blank => true   %>
+  <p>Category: <%=@one.category %><br>
+  
    <%= select_tag :cat1 , options_from_collection_for_select(@acategory, "name", "name", @one.category1), :include_blank => true   %>
    <%= select_tag :cat2 , options_from_collection_for_select(@acategory, "name", "name", @one.category2), :include_blank => true   %>
     <%= select_tag :cat3 , options_from_collection_for_select(@acategory, "name", "name", @one.category3), :include_blank => true   %>
