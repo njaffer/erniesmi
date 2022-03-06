@@ -3,6 +3,10 @@ skip_before_action :verify_authenticity_token
 protect_from_forgery with: :null_session
 include ApplicationHelper
 
+def index
+	
+end
+
 def edit
 	@acategory = Acategory.all.order(:name)
 	@acounty = Acounty.all.order(:name)
@@ -12,7 +16,65 @@ def edit
     @category_list = concat_category
 end	
 
-def update
+def save
+	id = params["id"]
+
+	a = Archive.where("id=?",id).first
+	a.caption = params["title"]
+	a.pyear = params["pyear"]
+	a.pdate = params["pdate"]
+	a.pic_status = params["pic_status"]
+	a.cover_page = params["cover_page"]
+    
+    a.county = params["county"]
+    a.county1 = params["county1"]
+    a.county2 = params["county2"]
+    a.county3 = params["county3"]
+    a.county4 = params["county4"]
+    a.county5 = params["county5"]
+    a.county6 = params["county6"]
+    a.county7 = params["county7"]
+    a.county8 = params["county8"]
+    a.county9 = params["county9"]
+    a.county10 = params["county10"]
+
+    a.city = params["city"]
+    a.city1 = params["city1"]
+    a.city2 = params["city2"]
+    a.city3 = params["city3"]
+    a.city4 = params["city4"]
+    a.city5 = params["city5"]
+    a.city6 = params["city6"]
+    a.city7 = params["city7"]
+    a.city8 = params["city8"]
+    a.city9 = params["city9"]
+    a.city10 = params["city10"] 
+    a.city11 = params["city11"]
+
+ 
+    a.category = params["cat"]
+    a.category1 = params["cat1"]
+    a.category2 = params["cat2"]
+    a.category3 = params["cat3"]
+    a.category4 = params["cat4"]
+    a.category5 = params["cat5"]
+    a.category6 = params["cat6"]
+    a.category7 = params["cat7"]
+    a.category8 = params["cat8"]
+    a.category9 = params["cat9"]
+    a.category10 = params["cat10"]
+    a.category11 = params["cat11"]
+    a.category12 = params["cat12"]
+    a.category13 = params["cat13"]
+    a.category14 = params["cat14"]
+    a.category15 = params["cat15"]
+    a.category16 = params["cat16"]
+    a.category17 = params["cat17"]
+    a.category18 = params["cat18"]
+    a.category19 = params["cat19"]
+    a.category20 = params["cat20"]
+    
+	a.save!
 end
 	
 def show
@@ -21,7 +83,7 @@ end
 
 def advanced_search
 
-	@acategory = Acategory.all.order(:name)
+   	@acategory = Acategory.all.order(:name)
 	@acounty = Acounty.all.order(:name)
 	@acity = Acity.all.order(:name)
     @connector = ['AND', 'OR']
@@ -154,17 +216,21 @@ def advanced_search
     @total_archives_count = @total_archives.count 
   end  
  
+  if (str.eql? "")
+  	@archives = nil
+  end	
 end	
 
 def search 
 
-  
+ if (params["back"].eql? "1")
+ 	params["back"] = 0
+ else	
   countysearch = params["countysearch"]
-  #countysearch.gsub("'", "\\\\'")
   searchterm = params["searchterm"]
   searchterm = "" if searchterm.nil?
   searchterm = searchterm.gsub("'", "''")
-
+  $lastsearch = searchterm
   if (!countysearch.nil?)
     searchterm = params["county"]
 	str = "county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"	 
@@ -185,6 +251,9 @@ def search
 	  @archives = Archive.where(str).page params[:page]
 	end 
   end	 
+    $archivelist = @total_archives
+    $shortlist = @archives
+  end
 end	
 
 def import
@@ -358,7 +427,26 @@ def import
       end
     end
 
-  def searchlist
-  end  
+  def letter
+  	id = params[:id] 
+  	nextpic  = params[:next]
+  	prevpic  = params[:prev]
+  	
+  	if nextpic.eql? "1"
+  	  nexta =	$archivelist.where("id > ?", id).first
+  	  id = nexta.id
+  	elsif prevpic.eql? "1"
+  	  nexta =	$archivelist.where("id < ?", id).last
+  	  id = nexta.id
+  	end	
+
+	a = Archive.where("id=?",id)
+	@a = ""
+	@a = a.first if !a.nil?
+	
+  end	
+
+
+   
 
 end

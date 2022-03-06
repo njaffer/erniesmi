@@ -1,12 +1,14 @@
 <div class="container">
+ <p align="center"><%= paginate $shortlist, window: 3 %></p> 
 <% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" %>  
 
+<% $lastpage = params["page"] %>
 <h4>  
 
-    <%= @total_archives.count %> archives found </h4><%= button_to "Advanced Search", advanced_search_archives_path, :method => "get" %>
+    <%= $archivelist.count %> archives found </h4><%= button_to "Advanced Search", advanced_search_archives_path, :method => "get" %>
 <% 
 %>
-<% @archives.each do |a| %>
+<% $shortlist.each do |a| %>
 <% if (a.fname.nil?)
     fname_url = "ernie.png"
    else 
@@ -88,6 +90,6 @@
   </div>
 
 <% end%>
-<p align="center"><%= paginate @archives, window: 3 %></p>
+<p align="center"><%= paginate $shortlist, window: 3 %></p>
 
 </div>
