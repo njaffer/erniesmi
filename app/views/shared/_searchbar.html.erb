@@ -1,0 +1,9 @@
+<%= form_tag(search_archives_path, :enctype =>"multipart/form-data") do %>
+  <div class="form-group">
+    
+      <%= search_field_tag 'searchterm', value="" ,size: 40 %><button type="submit" class="btn btn-primary" style="margin-left: 6px;">Search</button> 
+   
+  </div>
+ 
+<% end %>
+

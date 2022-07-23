@@ -1,0 +1,160 @@
+<div class="container">
+	<h2>Advanced Search</h2>
+  <% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" %> 
+  <div class="card" style=" margin-top: 10px; margin-bottom: 20px; padding-top: 15px; background-color: #F5F5F5;">
+	<%= form_tag(advanced_search_archives_path, :enctype =>"multipart/form-data") do %>
+  <div class="form-group">
+    
+    <div class="row ml-1">
+    <div class="col-sm-1">
+     <%= label_tag :county %>
+   </div>
+   <div class="col-sm-11" align="left">
+
+     <%= select_tag :county , options_from_collection_for_select(@acounty, "name", "name", @county), :include_blank => true   %> <%= select_tag "con1", options_for_select(@connector,@con1)  %> 
+      <%= select_tag :county1 , options_from_collection_for_select(@acounty, "name", "name", @county1), :include_blank => true   %> <%= select_tag "con11", options_for_select(@connector,@con11)  %> 
+       <%= select_tag :county2 , options_from_collection_for_select(@acounty, "name", "name", @county2), :include_blank => true   %> <%= select_tag "con12", options_for_select(@connector,@con12)  %> 
+        <%= select_tag :county3 , options_from_collection_for_select(@acounty, "name", "name", @county3), :include_blank => true   %> <%= select_tag "con13", options_for_select(@connector,@con13)  %> 
+    </div>
+    </div>
+
+    <div class="row ml-1">
+    <div class="col-sm-1" align="left">
+     <%= label_tag :city %>
+    </div> 
+    <div class="col-sm-11" align="left"> 
+     <%= select_tag :city, options_from_collection_for_select(@acity, "name", "name", @city), :include_blank => true  %> <%= select_tag "con2", options_for_select(@connector,@con2)  %><%= select_tag :city1, options_from_collection_for_select(@acity, "name", "name", @city1), :include_blank => true  %> <%= select_tag "con21", options_for_select(@connector,@con21)  %><%= select_tag :city2, options_from_collection_for_select(@acity, "name", "name", @city2), :include_blank => true  %> <%= select_tag "con22", options_for_select(@connector,@con22)  %><%= select_tag :city3, options_from_collection_for_select(@acity, "name", "name", @city3), :include_blank => true  %> <%= select_tag "con23", options_for_select(@connector,@con23)  %>
+    </div>
+    </div>
+
+    <div class="row ml-1">
+    <div class="col-sm-1" align="left">
+     <%= label_tag :category %>
+    </div>
+    <div class="col-sm-11" align="left"> 
+     <%= select_tag :category, options_from_collection_for_select(@acategory, "name", "name", @category) , :include_blank => true  %> <%= select_tag "con3", options_for_select(@connector,@con3)  %> 
+     <%= select_tag :category1, options_from_collection_for_select(@acategory, "name", "name", @category1) , :include_blank => true  %><%= select_tag "con31", options_for_select(@connector,@con31)  %> 
+     <%= select_tag :category2, options_from_collection_for_select(@acategory, "name", "name", @category2) , :include_blank => true  %><%= select_tag "con32", options_for_select(@connector,@con32)  %>
+      <%= select_tag :category3, options_from_collection_for_select(@acategory, "name", "name", @category3) , :include_blank => true  %>
+    </div>
+    </div>
+  
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Search Archives</button> 
+      <%#<button type="Reset" class="btn btn-secondary">Reset Form</button> %>
+    </div>
+  </div>
+<% end %>
+</div>
+<% if (!@archives.nil?) %>
+<h4 style="margin-left: 10px; margin-top: 10px;">  <%= @total_archives_count %> archives found </h4>
+<% @archives.each do |a| %>
+<% if (a.fname.nil?)
+    fname_url = "https://ernie-tpics.s3.amazonaws.com/ernie.png"
+   else 
+    fname_url = base_url+a.fname 
+   end 
+%>
+<% url = image_url(fname_url)%>
+<% access_level = check_current_access %>
+
+<div class="card" style="width: 100%;">
+  <div class="card-title">
+    
+  </div>  
+   <div class="card-body">
+    <div class="row">
+      <div class="col-2">
+        <p><%= link_to image_tag(url, style: 'height:40%;width:40%;'), {action: 'letter', controller: 'archives'} %>
+        </p>
+        <% if (access_level==1) %>
+          <p> <%= link_to "Edit", edit_archives_path(:id => a.id)  %></p>
+        <% end %>  
+
+      </div>
+      <div class="col-10">  
+      <p class="card-title"><b>Title:</b> <%=a.caption%>  <%= link_to " More..", letter_archives_path(:id => a.id)  %>
+      <br>
+      <b>Year:</b> <%= a.pyear %> <br>
+      <b>Date:</b> <%= a.pdate %> <br>
+      <b>County:</b> 
+        
+        <% if (!a.county1.nil?) %>
+          <%= link_to a.county1, search_archives_path(:county => a.county1)  %>
+        <%end%> 
+        <% if (!a.county2.nil?) %>, 
+          <%= link_to a.county2, search_archives_path(:county => a.county2)  %> 
+        <%end%>
+        <% if (!a.county3.nil?) %>,
+          <%= link_to a.county3, search_archives_path(:county => a.county3)  %>
+        <%end%> 
+         <% if (!a.county4.nil?) %>
+          <%= link_to a.county4, search_archives_path(:county => a.county4)  %>
+        <%end%> 
+        <% if (!a.county5.nil?) %>, 
+          <%= link_to a.county5, search_archives_path(:county => a.county5)  %> 
+        <%end%>
+        <% if (!a.county6.nil?) %>,
+          <%= link_to a.county6, search_archives_path(:county => a.county6)  %>
+        <%end%> 
+         <% if (!a.county7.nil?) %>
+          <%= link_to a.county7, search_archives_path(:county => a.county7)  %>
+        <%end%> 
+        <% if (!a.county8.nil?) %>, 
+          <%= link_to a.county8, search_archives_path(:county => a.county8)  %> 
+        <%end%>
+        <% if (!a.county9.nil?) %>,
+          <%= link_to a.county9, search_archives_path(:county => a.county9)  %>
+        <%end%> 
+        <% if (!a.county10.nil?) %>,
+          <%= link_to a.county10, search_archives_path(:county => a.county10)  %>
+        <%end%> 
+        <br>
+      <b>City:</b> 
+        <%=a.city1 %> <% if (!a.city2.nil?) %>,<%end%> 
+        <%=a.city2 %> <% if (!a.city3.nil?) %>,<%end%> 
+        <%=a.city3 %> <% if (!a.city4.nil?) %>,<%end%> 
+        <%=a.city4 %> <% if (!a.city5.nil?) %>,<%end%> 
+        <%=a.city5 %> <% if (!a.city6.nil?) %>,<%end%> 
+        <%=a.city6 %> <% if (!a.city7.nil?) %>,<%end%> 
+        <%=a.city7 %> <% if (!a.city8.nil?) %>,<%end%> 
+        <%=a.city8 %> <% if (!a.city9.nil?) %>,<%end%> 
+        <%=a.city9 %> <% if (!a.city10.nil?) %>,<%end%> 
+        <%=a.city10 %><br>
+      <b>Category:</b> 
+        <%=a.category1 %> <% if (!a.category2.nil?) %>,<%end%> 
+        <%=a.category2 %> <% if (!a.category3.nil?) %>,<%end%> 
+        <%=a.category3 %> <% if (!a.category4.nil?) %>,<%end%> 
+        <%=a.category4 %> <% if (!a.category5.nil?) %>,<%end%> 
+        <%=a.category5 %> <% if (!a.category6.nil?) %>,<%end%> 
+        <%=a.category6 %> <% if (!a.category7.nil?) %>,<%end%> 
+        <%=a.category7 %> <% if (!a.category8.nil?) %>,<%end%> 
+        <%=a.category8 %> <% if (!a.category9.nil?) %>,<%end%> 
+        <%=a.category9 %> <% if (!a.category10.nil?) %>,<%end%> 
+        <%=a.category10 %> <% if (!a.category11.nil?) %>,<%end%> 
+        <%=a.category11 %> <% if (!a.category12.nil?) %>,<%end%> 
+        <%=a.category12 %> <% if (!a.category13.nil?) %>,<%end%> 
+        <%=a.category13 %> <% if (!a.category14.nil?) %>,<%end%> 
+        <%=a.category14 %> <% if (!a.category15.nil?) %>,<%end%> 
+        <%=a.category15 %> <% if (!a.category16.nil?) %>,<%end%> 
+        <%=a.category16 %> <% if (!a.category17.nil?) %>,<%end%> 
+        <%=a.category17 %> <% if (!a.category18.nil?) %>,<%end%> 
+        <%=a.category18 %> <% if (!a.category19.nil?) %>,<%end%> 
+        <%=a.category19 %> <% if (!a.category20.nil?) %>,<%end%> 
+        <%=a.category20 %> 
+        <br>
+      
+      <b>Pages: </b>  
+      
+      </p>
+        </div>
+    </div>
+   </div>
+  </div>
+
+<% end%>
+<p align="center"><%= paginate @archives, window: 3 %></p>
+<% end %>
+</div>	

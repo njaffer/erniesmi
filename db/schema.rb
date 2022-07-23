@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_150317) do
+ActiveRecord::Schema.define(version: 2022_02_15_225755) do
+
+  create_table "acategories", force: :cascade do |t|
+    t.string "name"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "acities", force: :cascade do |t|
+    t.string "name"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "acounties", force: :cascade do |t|
+    t.string "name"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "archives", force: :cascade do |t|
     t.text "caption"
@@ -78,6 +99,18 @@ ActiveRecord::Schema.define(version: 2022_02_09_150317) do
     t.boolean "cover_page"
     t.boolean "pic_status"
     t.integer "ptype"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "permits", force: :cascade do |t|
+    t.string "email"
+    t.integer "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "searches", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

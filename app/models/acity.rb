@@ -1,0 +1,2 @@
+class Acity < ApplicationRecord
+end

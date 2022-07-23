@@ -1,0 +1,122 @@
+
+<div class ="container">
+
+    <p align=left> <%= link_to "Back to Search Results", search_archives_path(:back => 1, :page => $lastpage)  %>
+     </p>   
+    <% $n = $archivelist.where("id > ?", @a.id).first 
+       $p = $archivelist.where("id < ?", @a.id).last
+    %>
+    <p align=right>   
+    <%   if (!$p.nil?)
+    %>
+     <%= link_to "<< Prev", letter_archives_path(:id => @a.id, :next=>0, :prev=>1)  %> 
+    <% end %>
+    <%   if (!$p.nil? && !$n.nil?) %>
+     | 
+    <% end %>
+    <% if (!$n.nil?) %>
+	 <%= link_to "Next >> ", letter_archives_path(:id => @a.id, :next=>1, :prev=>0) %>
+    <% end %>  
+    </p>
+	<p><%= @a.caption%> 
+    <% access_level = check_current_access %>
+    <% if (access_level==1) %>
+              <p> <%= link_to "Edit", edit_archives_path(:id => @a.id)  %></p>
+            <% end %> </p> 
+	<% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" 
+	if (@a.fname.nil?)
+    fname_url = "ernie.png"
+   else 
+    fname_url = base_url+@a.fname 
+   end  
+	 %>
+	<% url = image_url(fname_url)%>
+	<p align="left"><%= image_tag(url, style: 'height:60%;width:60%;') %></p>
+	<p><b>Year:</b> <%= @a.pyear %> <br>
+        <b>Date:</b> <%= @a.pdate %> <br>
+
+        <b>County:</b> 
+    	 
+    	  <% if (!@a.county1.eql? "") %>
+    	    <%= link_to @a.county1, search_archives_path(:county => @a.county1)  %>
+    	  <%end%> 
+    	  <% if (!@a.county2.eql? "") %>, 
+    	    <%= link_to @a.county2, search_archives_path(:county => @a.county2)  %> 
+    	  <%end%>
+    	  <% if (!@a.county3.eql? "") %>,
+    	    <%= link_to @a.county3, search_archives_path(:county => @a.county3)  %>
+    	  <%end%> 
+         <% if (!@a.county4.eql? "") %>,
+          <%= link_to @a.county4, search_archives_path(:county => @a.county4)  %>
+        <%end%> 
+        <% if (!@a.county5.eql? "") %>, 
+          <%= link_to @a.county5, search_archives_path(:county => @a.county5)  %> 
+        <%end%>
+        <% if (!@a.county6.eql? "") %>,
+          <%= link_to @a.county6, search_archives_path(:county => @a.county6)  %>
+        <%end%> 
+         <% if (!@a.county7.eql? "") %>,
+          <%= link_to @a.county7, search_archives_path(:county => @a.county7)  %>
+        <%end%> 
+        <% if (!@a.county8.eql? "") %>, 
+          <%= link_to @a.county8, search_archives_path(:county => @a.county8)  %> 
+        <%end%>
+        <% if (!@a.county9.eql? "") %>,
+          <%= link_to @a.county9, search_archives_path(:county => @a.county9)  %>  
+        <%end%> 
+        <% if (!@a.county10.eql? "") %>,
+          <%= link_to @a.county10, search_archives_path(:county => @a.county10)  %>  
+        <%end%> 
+    	  <br>
+    	<b>City:</b> 
+    	  
+    	  <%=@a.city1 %> <% if (!@a.city2.eql? "") %>,<%end%> 
+    	  <%=@a.city2 %> <% if (!@a.city3.eql? "") %>,<%end%> 
+    	  <%=@a.city3 %> <% if (!@a.city4.eql? "") %>,<%end%> 
+        <%=@a.city4 %> <% if (!@a.city5.eql? "") %>,<%end%> 
+        <%=@a.city5 %> <% if (!@a.city6.eql? "") %>,<%end%> 
+        <%=@a.city6 %> <% if (!@a.city7.eql? "") %>,<%end%> 
+        <%=@a.city7 %> <% if (!@a.city8.eql? "") %>,<%end%> 
+        <%=@a.city8 %> <% if (!@a.city9.eql? "") %>,<%end%> 
+        <%=@a.city9 %> <% if (!@a.city10.eql? "") %>,<%end%> 
+        <%=@a.city10 %> <% if (!@a.city11.eql? "") %>,<%end%> 
+        <%=@a.city11 %>
+        <br>
+    	<b>Category:</b> 
+    	 
+    	  <%=@a.category1 %> <% if (!@a.category2.eql? "") %>,<%end%> 
+    	  <%=@a.category2 %> <% if (!@a.category3.eql? "") %>,<%end%> 
+    	  <%=@a.category3 %> <% if (!@a.category4.eql? "") %>,<%end%> 
+    	  <%=@a.category4 %> <% if (!@a.category5.eql? "") %>,<%end%> 
+    	  <%=@a.category5 %> <% if (!@a.category6.eql? "") %>,<%end%> 
+    	  <%=@a.category6 %> <% if (!@a.category7.eql? "") %>,<%end%> 
+    	  <%=@a.category7 %> <% if (!@a.category8.eql? "") %>,<%end%> 
+    	  <%=@a.category8 %> <% if (!@a.category9.eql? "") %>,<%end%> 
+    	  <%=@a.category9 %> <% if (!@a.category10.eql? "") %>,<%end%> 
+    	  <%=@a.category10 %> <% if (!@a.category11.eql? "") %>,<%end%> 
+    	  <%=@a.category11 %> <% if (!@a.category12.eql? "") %>,<%end%> 
+    	  <%=@a.category12 %> <% if (!@a.category13.eql? "") %>,<%end%> 
+    	  <%=@a.category13 %> <% if (!@a.category14.eql? "") %>,<%end%> 
+    	  <%=@a.category14 %> <% if (!@a.category15.eql? "") %>,<%end%> 
+    	  <%=@a.category15 %> <% if (!@a.category16.eql? "") %>,<%end%> 
+    	  <%=@a.category16 %> <% if (!@a.category17.eql? "") %>,<%end%> 
+    	  <%=@a.category17 %> <% if (!@a.category18.eql? "") %>,<%end%> 
+    	  <%=@a.category18 %> <% if (!@a.category19.eql? "") %>,<%end%> 
+    	  <%=@a.category19 %> <% if (!@a.category20.eql? "") %>,<%end%> 
+    	  <%=@a.category20 %> 
+    	  <br>
+    	  <%
+          associated = Archive.where("ptype=?",@a.id)
+          associated_count = associated.count
+          num = 1 
+          %>
+          <b>Associated Pages: </b><%=associated_count%> <br>
+          <% associated.each do |assoc| %>
+
+          <p><%=num%>. <%=assoc.caption %></p>
+          <% num= num+1 %>
+        <%end%>
+     </p>
+
+</div>
+
