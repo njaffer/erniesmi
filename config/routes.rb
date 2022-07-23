@@ -14,6 +14,12 @@ resources :archives do
     end
   end 
 
+resources :about do
+    collection do
+      get :about, :bookshelf, :stamp, :genealogy, :history, :national
+    end
+  end   
+  
  resources :permit do
     collection do
       get :index
@@ -21,5 +27,4 @@ resources :archives do
     end
   end  
 
-  
 end
