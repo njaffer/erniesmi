@@ -11,4 +11,10 @@ resources :archives do
       post :save, :import, :searchlist
     end
   end 
+
+resources :about do
+    collection do
+      get :about, :bookshelf, :stamp, :genealogy, :history, :national
+    end
+  end   
 end
