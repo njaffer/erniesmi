@@ -27,4 +27,10 @@ resources :about do
     end
   end  
 
+ resources :contact do
+    collection do
+      get :index, :support
+      
+    end
+  end  
 end

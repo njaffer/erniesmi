@@ -31,7 +31,12 @@
    end  
 	 %>
 	<% url = image_url(fname_url)%>
-	<p align="left"><%= image_tag(url, style: 'height:60%;width:60%;') %></p>
+
+	<p align="left">
+    <div id="seadragon-viewer" style="width:1000px; height:600px;"></div>
+  <%#= image_tag(url, style: 'height:60%;width:60%;') %>
+    
+  </p>
 	<p><b>Year:</b> <%= @a.pyear %> <br>
         <b>Date:</b> <%= @a.pdate %> <br>
 
@@ -119,4 +124,18 @@
      </p>
 
 </div>
+
+
+<script src="//openseadragon.github.io/openseadragon/openseadragon.min.js"></script>
+
+<script type="text/javascript">
+var viewer = OpenSeadragon({
+  id: "seadragon-viewer",
+  prefixUrl: "//openseadragon.github.io/openseadragon/images/",
+  tileSources: {
+        type: 'image',
+        url:  '<%= fname_url %>'
+    }
+});
+</script>
 

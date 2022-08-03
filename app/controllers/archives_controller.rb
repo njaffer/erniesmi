@@ -102,7 +102,6 @@ def save
 
 	a = Archive.new
 	a.fname = fname
-  byebug
 	a.caption = params["title"]
 	a.pyear = params["pyear"]
 	a.pdate = params["pdate"]

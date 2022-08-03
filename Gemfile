@@ -63,5 +63,5 @@ gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'mysql2'
 gem 'kaminari'
-gem 'openseadragon', '~> 0.5.0'
+gem 'openseadragon'
 

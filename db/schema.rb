@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_27_230836) do
+ActiveRecord::Schema.define(version: 2022_08_03_012239) do
 
   create_table "acategories", force: :cascade do |t|
     t.string "name"
@@ -99,6 +99,11 @@ ActiveRecord::Schema.define(version: 2022_07_27_230836) do
     t.boolean "cover_page"
     t.boolean "pic_status"
     t.integer "ptype"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
