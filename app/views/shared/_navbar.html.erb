@@ -39,24 +39,26 @@
                      <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About</a>
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">About Ernie</a>
+                            <%= link_to 'About Ernie', about_about_index_path, class: 'nav-link' %>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">Ernie's Bookshelf</a>
+                            <%= link_to 'Ernie''s Bookshelf', bookshelf_about_index_path, class: 'nav-link' %>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">MI Stamp Clubs</a>
+                            <%= link_to 'MI Stamp Clubs', stamp_about_index_path, class: 'nav-link' %>
                             <div class="dropdown-divider"></div>
-                            <a href="#"class="dropdown-item">MI Genealogy Clubs</a>
+                            <%= link_to 'MI Genealogy Clubs', genealogy_about_index_path, class: 'nav-link' %>
+                            <a href="#"class="dropdown-item"></a>
                             <div class="dropdown-divider"></div>
-                            <a href="#"class="dropdown-item">MI History Societies</a>
+                            <%= link_to 'MI History Societies', history_about_index_path, class: 'nav-link' %>
                             <div class="dropdown-divider"></div>
-                            <a href="#"class="dropdown-item">National Societies</a>
+                            <%= link_to 'National Societies', national_about_index_path, class: 'nav-link' %>
+                          
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Contact</a>
+                        <%= link_to "Contact", contact_index_path, class: 'nav-link' %>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Support Our Work</a>
+                        <%= link_to "Support Our Work", support_contact_index_path, class: 'nav-link' %>
                     </li>
                     
                     

@@ -1,0 +1,2 @@
+class UserArchive < ApplicationRecord
+end

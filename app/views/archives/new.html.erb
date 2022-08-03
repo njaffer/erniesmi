@@ -1,20 +1,110 @@
 <div class="container">
-  
-<h4> Import List </h4>
 
-<%= form_tag("import", :enctype =>"multipart/form-data") do %>
-   <div class="row">
+  <h4> Archive: New</h4> 
+ 
+  <%= form_tag(save_archives_path, :enctype =>"multipart/form-data") do %>
+
+  <div class="row">
      <div class="field">
-       <%= label_tag :file %>
-       <%= file_field_tag :file,  :required => true  %>
+       <%#= label_tag :file %>
+       <%#= file_field_tag :file,  :required => true  %>
      </div>
    </div>
 
-   <div class="row">
-   <div class="actions">
-      <%= submit_tag 'Next' %>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
-   </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;">  
+  <p>Filename: <br><input name="fname" type="text" size=80 ></p>
+  </div>
 
-<% end %>   
+  <div class="card" style="width: 45rem; padding-left: 10px;">  
+  <p>Title: <textarea name="title" row="3" cols="80"></textarea></p>
+  </div>
+   <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p> Status: <%= check_box_tag 'pic_status', true, true %> </p>
+    <p> Cover Page: <%= check_box_tag 'cover_page', true, false%> </p>
+    
+  </div>
+ 
+  <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p>Year:<br><input name="pyear" type="text" value=""></p>
+  </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p>Date:<br><input name="pdate" type="text" value=""></p>
+  </div>
+   <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p>Cost:<br><input name="pcost" type="text" value=""></p>
+  </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p>Price:<br><input name="pprice" type="text" value=""></p>
+  </div>
+ 
+  <div class="card" style="width: 45rem; padding-left: 10px;">
+  <p>County:  <br>
+   
+   <%= select_tag :county1 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :county2 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :county3 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :county4 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :county5 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :county6 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :county7 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :county8 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :county9 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :county10 , options_from_collection_for_select(@acounty, "name", "name", ""), :include_blank => true   %>
+   
+ </p>
+  </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;"> 
+  
+  <p>City: <br>
+
+   <%= select_tag :city1 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :city2 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :city3 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :city4 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :city5 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :city6 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :city7 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :city8 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :city9 , options_from_collection_for_select(@acity, "name", "name",""), :include_blank => true   %>
+   <%= select_tag :city10 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :city11 , options_from_collection_for_select(@acity, "name", "name", ""), :include_blank => true   %>
+
+  </p>
+  </div>
+  <div class="card" style="width: 45rem; padding-left: 10px;"> 
+ 
+  <p>Category: <br>
+  
+   <%= select_tag :cat1 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat2 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :cat3 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat4 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :cat5 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat6 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :cat7 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat8 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :cat9 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat10 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :cat11 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat12 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :cat13 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat14 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :cat15 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat16, options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :cat17 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat18 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+    <%= select_tag :cat19 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+   <%= select_tag :cat20 , options_from_collection_for_select(@acategory, "name", "name", ""), :include_blank => true   %>
+  </p>
+
+  </div>
+  
+  <div class="form-group" style="padding-top: 20px">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">Save</button> 
+      <%#<button type="Reset" class="btn btn-secondary">Reset Form</button> %>
+    </div>
+  </div>
+
+  <% end %>
 </div>

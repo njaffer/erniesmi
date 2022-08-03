@@ -1,1 +1,16 @@
-<%# https://ernie-tpics.s3.amazonaws.com/tpics/02-16-2009-10-48-03-609.jpg %>
+<% fname_url = "https://ernie-tpics.s3.amazonaws.com/tpics/02-16-2009-10-48-03-609.jpg" %>
+<% url = image_url(fname_url)%>
+<div id="seadragon-viewer" style="width:800px; height:600px;"></div>
+<script src="//openseadragon.github.io/openseadragon/openseadragon.min.js"></script>
+
+<script type="text/javascript">
+var viewer = OpenSeadragon({
+  id: "seadragon-viewer",
+  prefixUrl: "//openseadragon.github.io/openseadragon/images/",
+  tileSources: {
+        type: 'image',
+        url:  '<%= fname_url %>'
+    }
+});
+</script>	
+
