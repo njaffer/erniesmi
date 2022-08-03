@@ -10,7 +10,7 @@ get 'index' => "home#index"
 resources :archives do
     collection do
       get :index, :new, :advanced_search, :test, :search, :letter, :county, :city, :category, :edit
-      post :save, :import, :searchlist, :search, :advanced_search
+      post  :save, :import, :searchlist, :search, :advanced_search, :editsave
     end
   end 
 

@@ -1,0 +1,20 @@
+<div class="container">
+  
+<h4> Import List </h4>
+
+<%= form_tag("import", :enctype =>"multipart/form-data") do %>
+   <div class="row">
+     <div class="field">
+       <%= label_tag :file %>
+       <%= file_field_tag :file,  :required => true  %>
+     </div>
+   </div>
+
+   <div class="row">
+   <div class="actions">
+      <%= submit_tag 'Next' %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
+   </div>
+
+<% end %>   
+</div>

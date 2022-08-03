@@ -7,6 +7,12 @@ def index
 	
 end
 
+def new
+	@acategory = Acategory.all.order(:name)
+	@acounty = Acounty.all.order(:name)
+	@acity = Acity.all.order(:name)
+end	
+
 def edit
 	@acategory = Acategory.all.order(:name)
 	@acounty = Acounty.all.order(:name)
@@ -16,10 +22,87 @@ def edit
     @category_list = concat_category
 end	
 
-def save
-	id = params["id"]
+def editsave
+  id = params["id"]
 
-	a = Archive.where("id=?",id).first
+  a = Archive.where("id=?",id).first
+  a.fname = params["fname"]
+  a.caption = params["title"]
+  a.pyear = params["pyear"]
+  a.pdate = params["pdate"]
+  a.pic_status = params["pic_status"]
+  a.cover_page = params["cover_page"]
+  a.price = params["pprice"]
+  a.cost = params["pcost"]
+    
+    
+    a.county1 = params["county1"]
+    a.county2 = params["county2"]
+    a.county3 = params["county3"]
+    a.county4 = params["county4"]
+    a.county5 = params["county5"]
+    a.county6 = params["county6"]
+    a.county7 = params["county7"]
+    a.county8 = params["county8"]
+    a.county9 = params["county9"]
+    a.county10 = params["county10"]
+    a.county = a.county1 + "," + a.county2 + "," + a.county3 + "," + a.county4 + "," + a.county5 
+    a.county =  a.county + "," + a.county6 + "," + a.county7 + "," + a.county8 + "," + a.county9 + "," + a.county10
+    
+    a.city1 = params["city1"]
+    a.city2 = params["city2"]
+    a.city3 = params["city3"]
+    a.city4 = params["city4"]
+    a.city5 = params["city5"]
+    a.city6 = params["city6"]
+    a.city7 = params["city7"]
+    a.city8 = params["city8"]
+    a.city9 = params["city9"]
+    a.city10 = params["city10"] 
+    a.city11 = params["city11"]
+    a.city = a.city1 + "," + a.city2 + "," + a.city3 + "," + a.city4 + "," + a.city5 + ","
+    a.city = a.city + a.city6 + "," + a.city7 + "," + a.city8 + "," + a.city9 + "," + a.city10
+ 
+    
+    a.category1 = params["cat1"]
+    a.category2 = params["cat2"]
+    a.category3 = params["cat3"]
+    a.category4 = params["cat4"]
+    a.category5 = params["cat5"]
+    a.category6 = params["cat6"]
+    a.category7 = params["cat7"]
+    a.category8 = params["cat8"]
+    a.category9 = params["cat9"]
+    a.category10 = params["cat10"]
+    a.category11 = params["cat11"]
+    a.category12 = params["cat12"]
+    a.category13 = params["cat13"]
+    a.category14 = params["cat14"]
+    a.category15 = params["cat15"]
+    a.category16 = params["cat16"]
+    a.category17 = params["cat17"]
+    a.category18 = params["cat18"]
+    a.category19 = params["cat19"]
+    a.category20 = params["cat20"]
+    a.category = a.category1 + "," + a.category2 + "," + a.category3 + "," + a.category4 + ","
+    a.category = a.category + "," + a.category5 + "," + a.category6 + "," + a.category7 + "," + a.category8 + ","
+    a.category = a.category + "," + a.category9 + "," + a.category10 + "," + a.category11 + "," + a.category12 + ","
+    a.category = a.category + "," + a.category13 + "," + a.category14 + "," + a.category15 + "," + a.category16 + ","
+    a.category = a.category + "," + a.category17 + "," + a.category18 + "," + a.category19 + "," + a.category20 
+    
+    
+  a.save!
+end  
+
+def save
+
+	#upload pic
+	base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" 
+	fname = params["fname"]	
+
+	a = Archive.new
+	a.fname = fname
+  byebug
 	a.caption = params["title"]
 	a.pyear = params["pyear"]
 	a.pdate = params["pdate"]
@@ -85,7 +168,21 @@ def save
     
     
 	a.save!
+  id = a.id
+
+  params["id"] = id
+  @a = Archive.where("id=?",id).first
+  
+  #save the current user
+
+  u = UserArchive.new
+  u.email = current_user.email
+  u.a_id = id 
+  u.save!
+  
 end
+
+
 	
 def show
 end

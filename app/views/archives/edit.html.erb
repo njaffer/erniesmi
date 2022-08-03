@@ -7,9 +7,10 @@
 
   <h4> Edit an Archive</h4> 
  
-  <%= form_tag(save_archives_path, :enctype =>"multipart/form-data") do %>
+  <%= form_tag(editsave_archives_path, :enctype =>"multipart/form-data") do %>
 
   <div class="card" style="width: 45rem; padding-left: 10px;">
+  <p>Filename: <br><input name="fname" value="<%= @one.fname %>" size=50></p>  
   <p>Title: <textarea name="title" row="3" cols="80"><%= @one.caption %></textarea></p>
   </div>
    <div class="card" style="width: 45rem; padding-left: 10px;">
