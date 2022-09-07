@@ -296,33 +296,50 @@ def search
  	params["back"] = 0
  else	
   countysearch = params["countysearch"]
+
   searchterm = params["searchterm"]
   searchterm = "" if searchterm.nil?
   searchterm = searchterm.gsub("'", "''")
   $lastsearch = searchterm
-  if (!countysearch.nil?)
+  county = params["county"]
+  city = params["city"]
+  category = params["category"]
+  if ( (!countysearch.nil?) || ( (county != "") && (!county.eql? nil)) )
     searchterm = params["county"]
-	str = "county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"	 
+  str = "county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"   
     @total_archives = Archive.where(str)
-	@archives = Archive.where(str).page params[:page]
-  else		
-	if (searchterm.eql? "")
-	  @archives = Archive.order(:pyear).page params[:page]
-	  @total_archives = Archive.order(:pyear)
-	else
-	  str = "caption LIKE '%"+searchterm+"%' OR county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"	
-	  str = str + "OR city LIKE '%"+searchterm+"%' OR city1 LIKE '%"+searchterm+"%' OR city2 LIKE '%"+searchterm+"%' OR city3 LIKE '%"+searchterm+"%'"
-	  str = str + "OR category LIKE '%"+searchterm+"%' OR category1 LIKE '%"+searchterm+"%' OR category2 LIKE '%"+searchterm+"%' OR category3 LIKE '%"+searchterm+"%' OR category4 LIKE '%"+searchterm+"%' OR category5 LIKE '%"+searchterm+"%'"
-	  str = str + "OR category6 LIKE '%"+searchterm+"%' OR category7 LIKE '%"+searchterm+"%' OR category8 LIKE '%"+searchterm+"%' OR category9 LIKE '%"+searchterm+"%' OR category10 LIKE '%"+searchterm+"%'"
-	  str = str + "OR category11 LIKE '%"+searchterm+"%' OR category12 LIKE '%"+searchterm+"%' OR category13 LIKE '%"+searchterm+"%' OR category14 LIKE '%"+searchterm+"%' OR category15 LIKE '%"+searchterm+"%' OR category16 LIKE '%"+searchterm+"%'"
-	  str = str + "OR category17 LIKE '%"+searchterm+"%' OR category18 LIKE '%"+searchterm+"%' OR category19 LIKE '%"+searchterm+"%' OR category20 LIKE '%"+searchterm+"%'"
-	  @total_archives = Archive.where(str)
-	  @archives = Archive.where(str).page params[:page]
-	end 
+  @archives = Archive.where(str).page params[:page]
+  elsif ( city != "" && (!city.eql? nil) ) 
+    searchterm = params["city"]
+  str = "city LIKE '%"+searchterm+"%' OR city1 LIKE '%"+searchterm+"%' OR city2 LIKE '%"+searchterm+"%' OR city3 LIKE '%"+searchterm+"%'"
+  str = str + " OR city4 LIKE '%"+searchterm+"%' OR city5 LIKE '%"+searchterm+"%' OR city6 LIKE '%"+searchterm+"%' OR city7 LIKE '%"+searchterm+"%' OR city8 LIKE '%"+searchterm+"%' OR city9 LIKE '%"+searchterm+"%'"    
+    @total_archives = Archive.where(str)
+  @archives = Archive.where(str).page params[:page]
+  elsif ( category != "" && (!category.eql? nil) ) 
+    searchterm = params["category"]
+  str = "category LIKE '%"+searchterm+"%' OR category1 LIKE '%"+searchterm+"%' OR category2 LIKE '%"+searchterm+"%' OR category3 LIKE '%"+searchterm+"%'"
+  str = str + " OR category4 LIKE '%"+searchterm+"%' OR category5 LIKE '%"+searchterm+"%' OR category6 LIKE '%"+searchterm+"%' OR category7 LIKE '%"+searchterm+"%' OR category8 LIKE '%"+searchterm+"%' OR category9 LIKE '%"+searchterm+"%'"    
+    @total_archives = Archive.where(str)
+  @archives = Archive.where(str).page params[:page]
+ 
+  elsif (searchterm.eql? "")
+    @archives = Archive.order(:pyear).page params[:page]
+    @total_archives = Archive.order(:pyear)
+  else
+    str = "caption LIKE '%"+searchterm+"%' OR county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'" 
+    str = str + "OR city LIKE '%"+searchterm+"%' OR city1 LIKE '%"+searchterm+"%' OR city2 LIKE '%"+searchterm+"%' OR city3 LIKE '%"+searchterm+"%'"
+    str = str + "OR category LIKE '%"+searchterm+"%' OR category1 LIKE '%"+searchterm+"%' OR category2 LIKE '%"+searchterm+"%' OR category3 LIKE '%"+searchterm+"%' OR category4 LIKE '%"+searchterm+"%' OR category5 LIKE '%"+searchterm+"%'"
+    str = str + "OR category6 LIKE '%"+searchterm+"%' OR category7 LIKE '%"+searchterm+"%' OR category8 LIKE '%"+searchterm+"%' OR category9 LIKE '%"+searchterm+"%' OR category10 LIKE '%"+searchterm+"%'"
+    str = str + "OR category11 LIKE '%"+searchterm+"%' OR category12 LIKE '%"+searchterm+"%' OR category13 LIKE '%"+searchterm+"%' OR category14 LIKE '%"+searchterm+"%' OR category15 LIKE '%"+searchterm+"%' OR category16 LIKE '%"+searchterm+"%'"
+    str = str + "OR category17 LIKE '%"+searchterm+"%' OR category18 LIKE '%"+searchterm+"%' OR category19 LIKE '%"+searchterm+"%' OR category20 LIKE '%"+searchterm+"%'"
+    @total_archives = Archive.where(str)
+    @archives = Archive.where(str).page params[:page]
+  end 
+  
   end	 
     $archivelist = @total_archives
     $shortlist = @archives
-  end
+  
 end	
 
 def import
@@ -521,7 +538,7 @@ def import
 		 a.options1 = "Outgoing" if row_hash["Outgoing"]=="1"  
 
         a.fname = row_hash["Name"]
-        a.pdate = row_hash["Rdate"]
+        a.pdate = row_hash["Pdate"]
         a.pic_status = row_hash["ShowPic"]
         a.caption = row_hash["Caption"]
         a.ptype = row_hash["Ptype"] 
@@ -530,6 +547,7 @@ def import
         a.price = row_hash["Price"]
         a.cost = row_hash["Cost"]
         a.picval = row_hash["PicVal"]
+        a.old_id = row_hash["id"];
 
      a.save! 
       end

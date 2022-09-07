@@ -1,9 +1,10 @@
 <div class="container">
-<% # if admin %>
+<% access_level = check_current_access %>
+<% if access_level == 1 %>
 
 <%= link_to "Add an Archive", new_archive_path %>
 <hr>
-<% #end %> 
+<% end %> 
 
 <h2>My Account - Update Password </h2>
 

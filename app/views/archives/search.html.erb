@@ -1,12 +1,26 @@
 <div class="container">
- <p align="center"><%= paginate $shortlist, window: 3 %></p> 
+ <p align="center">
+  <% if ($shortlist.eql? nil) 
+     flag = false
+   else 
+    flag = true
+    %>
+    <%= paginate $shortlist, window: 3 %>
+  <% end %>  
+  <% if !($archivelist.eql? nil) 
+  count = $archivelist.count
+   else
+   count = 0
+   end %>
+  </p> 
 <% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" %>  
 
 <% $lastpage = params["page"] %>
 <h4>  
 
-    <%= $archivelist.count %> archives found </h4><%= button_to "Advanced Search", advanced_search_archives_path, :method => "get" %>
+    <%= count %> archives found </h4><%= button_to "Advanced Search", advanced_search_archives_path, :method => "get" %>
 <% 
+if (flag)
 %>
 <% $shortlist.each do |a| %>
 <% if (a.fname.nil?)
@@ -69,41 +83,64 @@
         <%end%> 
     	  <br>
     	<b>City:</b> 
-    	  <%=a.city1 %> <% if (!a.city2.nil?) %>,<%end%> 
-    	  <%=a.city2 %> <% if (!a.city3.nil?) %>,<%end%> 
-        <%=a.city3 %> <% if (!a.city4.nil?) %>,<%end%> 
-        <%=a.city4 %> <% if (!a.city5.nil?) %>,<%end%> 
-        <%=a.city5 %> <% if (!a.city6.nil?) %>,<%end%> 
-        <%=a.city6 %> <% if (!a.city7.nil?) %>,<%end%> 
-        <%=a.city7 %> <% if (!a.city8.nil?) %>,<%end%> 
-        <%=a.city8 %> <% if (!a.city9.nil?) %>,<%end%> 
-        <%=a.city9 %> <% if (!a.city10.nil?) %>,<%end%> 
-    	  <%=a.city10 %><br>
+    	 <% if ((!a.city1.eql? "") && (!a.city1.eql? nil)) %>
+         <%= link_to a.city1, search_archives_path(:city => a.city1)  %>  
+        <%end%> 
+        <% if ((!a.city2.eql? "") && (!a.city2.eql? nil)) %>
+         , <%= link_to a.city2, search_archives_path(:city => a.city2)  %>  
+        <%end%> 
+        <% if ((!a.city3.eql? "") && (!a.city3.eql? nil)) %>
+         , <%= link_to a.city3, search_archives_path(:city => a.city3)  %>  
+        <%end%> 
+        <% if ((!a.city4.eql? "") && (!a.city4.eql? nil)) %>
+         , <%= link_to a.city4, search_archives_path(:city => a.city4)  %>  
+        <%end%> 
+        <% if ((!a.city5.eql? "") && (!a.city5.eql? nil)) %>
+         , <%= link_to a.city5, search_archives_path(:city => a.city5)  %>  
+        <%end%> 
+        <% if ((!a.city6.eql? "") && (!a.city6.eql? nil)) %>
+         , <%= link_to a.city6, search_archives_path(:city => a.city6)  %>  
+        <%end%> 
+        <% if ((!a.city7.eql? "") && (!a.city7.eql? nil)) %>
+         , <%= link_to a.city7, search_archives_path(:city => a.city7)  %>  
+        <%end%> 
+        <% if ((!a.city8.eql? "") && (!a.city8.eql? nil)) %>
+         , <%= link_to a.city8, search_archives_path(:city => a.city8)  %>  
+        <%end%>
+        <% if ((!a.city9.eql? "") && (!a.city9.eql? nil)) %>
+         , <%= link_to a.city9, search_archives_path(:city => a.city9)  %>  
+        <%end%> 
+        <br>
     	<b>Category:</b> 
-    	  <%=a.category1 %> <% if (!a.category2.nil?) %>,<%end%> 
-    	  <%=a.category2 %> <% if (!a.category3.nil?) %>,<%end%> 
-    	  <%=a.category3 %> <% if (!a.category4.nil?) %>,<%end%> 
-    	  <%=a.category4 %> <% if (!a.category5.nil?) %>,<%end%> 
-    	  <%=a.category5 %> <% if (!a.category6.nil?) %>,<%end%> 
-    	  <%=a.category6 %> <% if (!a.category7.nil?) %>,<%end%> 
-    	  <%=a.category7 %> <% if (!a.category8.nil?) %>,<%end%> 
-    	  <%=a.category8 %> <% if (!a.category9.nil?) %>,<%end%> 
-    	  <%=a.category9 %> <% if (!a.category10.nil?) %>,<%end%> 
-    	  <%=a.category10 %> <% if (!a.category11.nil?) %>,<%end%> 
-    	  <%=a.category11 %> <% if (!a.category12.nil?) %>,<%end%> 
-    	  <%=a.category12 %> <% if (!a.category13.nil?) %>,<%end%> 
-    	  <%=a.category13 %> <% if (!a.category14.nil?) %>,<%end%> 
-    	  <%=a.category14 %> <% if (!a.category15.nil?) %>,<%end%> 
-    	  <%=a.category15 %> <% if (!a.category16.nil?) %>,<%end%> 
-    	  <%=a.category16 %> <% if (!a.category17.nil?) %>,<%end%> 
-    	  <%=a.category17 %> <% if (!a.category18.nil?) %>,<%end%> 
-    	  <%=a.category18 %> <% if (!a.category19.nil?) %>,<%end%> 
-    	  <%=a.category19 %> <% if (!a.category20.nil?) %>,<%end%> 
-    	  <%=a.category20 %> 
+     <% if ((!a.category1.eql? "") && (!a.category1.eql? nil)) %>  <%= link_to a.category1, search_archives_path(:category => a.category1)  %> <%end%>
+       <% if ((!a.category2.eql? "") && (!a.category2.eql? nil)) %>,  <%= link_to a.category2, search_archives_path(:category => a.category2)  %>  <%end%> 
+         <% if ((!a.category3.eql? "") && (!a.category3.eql? nil)) %>, <%= link_to a.category3, search_archives_path(:category => a.category3)  %> <%end%> 
+         <% if ((!a.category4.eql? "") && (!a.category4.eql? nil)) %>, <%= link_to a.category4, search_archives_path(:category => a.category4)  %> <%end%> 
+         <% if ((!a.category5.eql? "") && (!a.category5.eql? nil)) %>, <%= link_to a.category5, search_archives_path(:category => a.category5)  %> <%end%> 
+        <% if ((!a.category6.eql? "") && (!a.category6.eql? nil)) %>, <%= link_to a.category6, search_archives_path(:category => a.category6)  %> <%end%> 
+        <% if ((!a.category7.eql? "") && (!a.category7.eql? nil)) %>, <%= link_to a.category7, search_archives_path(:category => a.category7)  %> <%end%> 
+         <% if ((!a.category8.eql? "") && (!a.category8.eql? nil)) %>, <%= link_to a.category8, search_archives_path(:category => a.category8)  %> <%end%> 
+        <% if ((!a.category9.eql? "") && (!a.category9.eql? nil)) %>, <%= link_to a.category9, search_archives_path(:category => a.category9)  %> <%end%> 
+        <% if ((!a.category10.eql? "") && (!a.category10.eql? nil)) %>, <%= link_to a.category10, search_archives_path(:category => a.category10)  %> <%end%> 
+        <% if ((!a.category11.eql? "") && (!a.category11.eql? nil)) %>, <%= link_to a.category11, search_archives_path(:category => a.category11)  %> <%end%> 
+        <% if ((!a.category12.eql? "") && (!a.category12.eql? nil)) %>, <%= link_to a.category12, search_archives_path(:category => a.category12)  %> <%end%> 
+         <% if ((!a.category13.eql? "") && (!a.category13.eql? nil)) %>, <%= link_to a.category13, search_archives_path(:category => a.category13)  %> <%end%> 
+        <% if ((!a.category14.eql? "") && (!a.category14.eql? nil)) %>, <%= link_to a.category14, search_archives_path(:category => a.category14)  %> <%end%> 
+        <% if ((!a.category15.eql? "") && (!a.category15.eql? nil)) %>, <%= link_to a.category15, search_archives_path(:category => a.category15)  %> <%end%> 
+        <% if ((!a.category16.eql? "") && (!a.category16.eql? nil)) %>, <%= link_to a.category16, search_archives_path(:category => a.category16)  %> <%end%> 
+        <% if ((!a.category17.eql? "") && (!a.category17.eql? nil)) %>, <%= link_to a.category17, search_archives_path(:category => a.category17)  %> <%end%> 
+        <% if ((!a.category18.eql? "") && (!a.category18.eql? nil)) %>, <%= link_to a.category18, search_archives_path(:category => a.category18)  %> <%end%> 
+         <% if ((!a.category19.eql? "") && (!a.category19.eql? nil)) %>, <%= link_to a.category19, search_archives_path(:category => a.category19)  %> <%end%> 
+        <% if ((!a.category20.eql? "") && (!a.category20.eql? nil)) %>, <%= link_to a.category20, search_archives_path(:category => a.category20)  %> <%end%> 
+      
     	  <br>
    		  <%
-          associated = Archive.where("ptype=?",a.id)
+          associated = Archive.where("ptype=?",a.old_id)
           associated_count = associated.count
+          if (associated_count==0  && a.ptype != nil && a.ptype >0)
+            associated = Archive.where("ptype=?",a.ptype)
+            associated_count = associated.count
+          end  
         %>
         <b>Associated Pages: </b><%=associated_count%> <br> 
    		
@@ -115,5 +152,5 @@
 
 <% end%>
 <p align="center"><%= paginate $shortlist, window: 3 %></p>
-
+<% end #if flag %>
 </div>
