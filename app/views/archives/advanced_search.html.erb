@@ -1,6 +1,6 @@
 <div class="container">
 	<h2>Advanced Search</h2>
-  <% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" %> 
+  <% base_url = "https://ernie-tpics.s3.amazonaws.com/" %> 
   <div class="card" style=" margin-top: 10px; margin-bottom: 20px; padding-top: 15px; background-color: #F5F5F5;">
 	<%= form_tag(advanced_search_archives_path, :enctype =>"multipart/form-data") do %>
   <div class="form-group">
@@ -51,10 +51,17 @@
 <% if (!@archives.nil?) %>
 <h4 style="margin-left: 10px; margin-top: 10px;">  <%= @total_archives_count %> archives found </h4>
 <% @archives.each do |a| %>
-<% if (a.fname.nil?)
+<% 
+  ppath = a.path
+
+  if (ppath.eql? "Tpics")
+    ppath = "tpics"
+  end  
+
+if (a.fname.nil?)
     fname_url = "https://ernie-tpics.s3.amazonaws.com/ernie.png"
    else 
-    fname_url = base_url+a.fname 
+    fname_url = base_url+ ppath + "/"+ a.fname 
    end 
 %>
 <% url = image_url(fname_url)%>
@@ -67,7 +74,8 @@
    <div class="card-body">
     <div class="row">
       <div class="col-2">
-        <p><%= link_to image_tag(url, style: 'height:40%;width:40%;'), {action: 'letter', controller: 'archives'} %>
+        <p>
+          <%= link_to image_tag(url, style: 'height:40%;width:40%;'), letter_archives_path(:id => a.id) %>
         </p>
         <% if (access_level==1) %>
           <p> <%= link_to "Edit", edit_archives_path(:id => a.id)  %></p>
