@@ -23,11 +23,17 @@
     <% if (access_level==1) %>
               <p> <%= link_to "Edit", edit_archives_path(:id => @a.id)  %></p>
             <% end %> </p> 
-	<% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" 
+	<% base_url = "https://ernie-tpics.s3.amazonaws.com/" 
+  ppath = @a.path
+
+  if (ppath.eql? "Tpics")
+    ppath = "tpics"
+  end 
+    
 	if (@a.fname.nil?)
     fname_url = "ernie.png"
    else 
-    fname_url = base_url+@a.fname 
+    fname_url = base_url+ ppath + "/" + @a.fname 
    end  
 	 %>
 	<% url = image_url(fname_url)%>
@@ -159,6 +165,7 @@
 var viewer = OpenSeadragon({
   id: "seadragon-viewer",
   prefixUrl: "//openseadragon.github.io/openseadragon/images/",
+  showRotationControl: true,
   tileSources: {
         type: 'image',
         url:  '<%= fname_url %>'

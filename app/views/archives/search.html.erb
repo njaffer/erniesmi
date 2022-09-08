@@ -13,7 +13,9 @@
    count = 0
    end %>
   </p> 
-<% base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" %>  
+<% base_url = "https://ernie-tpics.s3.amazonaws.com/" 
+
+%>  
 
 <% $lastpage = params["page"] %>
 <h4>  
@@ -23,10 +25,17 @@
 if (flag)
 %>
 <% $shortlist.each do |a| %>
+<%
+  ppath = a.path
+
+  if (ppath.eql? "Tpics")
+    ppath = "tpics"
+  end  
+%>
 <% if (a.fname.nil?)
-    fname_url = "ernie.png"
+    fname_url = ""
    else 
-    fname_url = base_url+a.fname 
+    fname_url = base_url+ ppath + "/" + a.fname 
    end 
 %>
 <% url = image_url(fname_url)%>
