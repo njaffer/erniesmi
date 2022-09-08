@@ -1,6 +1,9 @@
+
+
 <div class="container">
 	<h2>Advanced Search</h2>
   <% base_url = "https://ernie-tpics.s3.amazonaws.com/" %> 
+  <% access_level = check_current_access %>
   <div class="card" style=" margin-top: 10px; margin-bottom: 20px; padding-top: 15px; background-color: #F5F5F5;">
 	<%= form_tag(advanced_search_archives_path, :enctype =>"multipart/form-data") do %>
   <div class="form-group">
@@ -37,8 +40,28 @@
      <%= select_tag :category2, options_from_collection_for_select(@acategory, "name", "name", @category2) , :include_blank => true  %><%= select_tag "con32", options_for_select(@connector,@con32)  %>
       <%= select_tag :category3, options_from_collection_for_select(@acategory, "name", "name", @category3) , :include_blank => true  %>
     </div>
+     </div>
+     <% if (access_level==1) %>
+     <div class="row ml-1">
+    <div class="col-sm-1" align="left">
+      Status:
+    </div>  
+     <div class="col-sm-11" align="left"> 
+       <% if (params["yes"]) %>
+       <%= check_box_tag :yes, 1, true %>
+       <% else %>
+       <%= check_box_tag (:yes) %>
+       <% end %>
+       <%= label_tag(:yes, "True") %> &nbsp;&nbsp;&nbsp;&nbsp;
+       <% if (params["no"]) %>
+       <%= check_box_tag :no, 1, true %>
+       <% else %>
+       <%= check_box_tag (:no) %>
+       <% end %>
+       <%= label_tag(:no, "False") %>
+     </div>
     </div>
-  
+    <% end %>
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
@@ -65,7 +88,7 @@ if (a.fname.nil?)
    end 
 %>
 <% url = image_url(fname_url)%>
-<% access_level = check_current_access %>
+
 
 <div class="card" style="width: 100%;">
   <div class="card-title">
