@@ -277,8 +277,17 @@ def advanced_search
   end
   
   len = str.length
-  if (len> 6)
-    str = str + "AND pic_status=true "	
+
+  
+ 
+  if (len> 6 && (params["no"]))
+    str = str + "AND pic_status=false "	
+  elsif (len> 6)
+    str = str + "AND pic_status=true "        
+  elsif (params["yes"])
+     str = "pic_status=true " 
+  elsif ( params["no"])
+      str = "pic_status=false "         
   end 
     
   @archives = Archive.where(str).page params[:page]
