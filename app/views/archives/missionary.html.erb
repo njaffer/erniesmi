@@ -1,0 +1,40 @@
+<div class="container">
+<h2>Privately Owned American Home Missionary Society Letters</h2>	
+<h5>History of the American Home Missionary Society and how it relates to erniesmichigan.com</h5>
+<p>The American Home Missionary Society was founded in 1826 as a national society to consolidate the missionary activities on the American frontier. From 1816 to 1826 the largest portion of the missionary work was done by the Young Men’s Missionary Society of New York and the United Domestic Missionary Society. The AHMS was formed by the Congregational, Presbyterian, Dutch Reformed, and Associate Reformed Churches, giving the Society an interdenominational focus to help form new churches and help infant churches until they could function without financial dependence on outside help. One of the most important things about the AHMS was that they kept all of the correspondence. Keeping correspondence is a rare thing to do. It is estimated that only 1 in 10,000 letters is saved, so having such a vast wealth of correspondence is important for all of the people that have reasons to want to study history from the first person accounts of the people that were living the life at that time. AHMS correspondence is still important today because of the information found in the quarterly letters the missionaries were required to write to the main office. In addition to religious information, the missionaries included comments and observations about the local residents, social and economic conditions, and other information relevant to the study of Genealogy, Black History, State History, Postal History, and Women's Correspondence. Women and women’s missionary auxiliaries of the Society were important financial supporters. In 1827, for example, 47 of the 130 local auxiliaries were women’s organizations. In 1831, that number was up to 160 of 400. In 1893 women’s organizations donated 20% of the total contributions and there were 35 woman missionaries in the Society roster.</p>
+
+<p>During its early history the Society had a “noninterference” position on the subject of slavery. Many large contributors were slaveholders or sympathetic to that way of life. By 1857, a few years before the civil war, the Society was forced to change its official position to anti-slavery because most of its financial backing was from the North where people were against slavery. The history of African Americans was closely intertwined with the Society in many of the letters. The importance of Missionary Society letters to stamp and cover collectors cannot be over estimated. All of the letters that went through the Postal System have very important information that is so prized by collectors, like manuscript cancels and town handstamps, and how the postage rates were marked. The letters and records are kept at the Amistad Research Center at Tulane University, New Orleans, Louisiana. Many, but not all letters are in their facility and therefore not available to collectors. The letters from Michigan were microfilmed in 1975. Many Society letters have become available to collectors. The following list is an attempt to identify the Society letters that are in private hands, and as much information about each letter that can be found in all sources possible.</p>
+
+<p>If you are a collector who has a letter on this list marked "not on erniesmichigan.com," and you would like to share a scan of the letter with us, we would welcome the opportunity to put it on the website so that others can enjoy and study that letter. Any collector having an AHMS letter that is not on the list is invited to inform us of the existence of that letter. Please give us the city, date, the AHMS large number marked on the cover, and any other information such as datelined city, and the missionary’s name. If anyone shares a scan and information about a letter we will mark it on the website as courtesy of that person.</p>
+
+<p>Please send to erniesmichigan@gmail .com</p>
+
+<p>Thank you,<br>
+Ernie<br>
+erniesmichigan.com</p>
+
+<div class="row" style="background-color: #e3e3e3;">
+	<div class="col"><strong>City</strong></div>
+	<div class="col">AHMS</div>
+	<div class="col">Date</div>
+	<div class="col">Markings</div>
+	<div class="col">On Ernie's Website</div>
+	<div class="col">Options</div>
+</div>
+<%
+  m_list = Missionary.all
+  m_list.each do |m|
+%>
+<div class="row">
+	<div class="col"><%= m.city %></div>
+	<div class="col"><%= m.ahms %></div>
+	<div class="col"><%= m.pdate %></div>
+	<div class="col"><%= m.txt %></div>
+	<div class="col"><% if (m.emi==1) %>Yes<% else %>No<% end %></div>
+	<div class="col"><% if (m.emi==1) %><%= link_to "View",letter_archives_path(:id => m.pid)%><%end%></div>
+</div>
+<%  	
+  end	
+%>
+	
+</div>

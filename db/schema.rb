@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_08_112424) do
+ActiveRecord::Schema.define(version: 2022_09_10_200358) do
 
   create_table "acategories", force: :cascade do |t|
     t.string "name"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2022_09_08_112424) do
     t.string "path"
     t.string "pdate"
     t.string "pyear"
-    t.string "county"
+    t.text "county"
     t.string "county1"
     t.string "county2"
     t.string "county3"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2022_09_08_112424) do
     t.string "city9"
     t.string "city10"
     t.string "city11"
-    t.string "category"
+    t.text "category"
     t.string "category1"
     t.string "category2"
     t.string "category3"
@@ -105,6 +105,17 @@ ActiveRecord::Schema.define(version: 2022_09_08_112424) do
   end
 
   create_table "contacts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "missionaries", force: :cascade do |t|
+    t.string "city"
+    t.string "txt"
+    t.string "pdate"
+    t.string "ahms"
+    t.integer "pid"
+    t.integer "emi"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

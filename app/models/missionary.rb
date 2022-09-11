@@ -1,0 +1,2 @@
+class Missionary < ApplicationRecord
+end

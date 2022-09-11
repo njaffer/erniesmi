@@ -3,25 +3,31 @@
 
     <p align=left> <%= link_to "Back to Search Results", search_archives_path(:back => 1, :page => $lastpage)  %>
      </p>   
-    <% $n = $archivelist.where("id > ?", @a.id).first 
-       $p = $archivelist.where("id < ?", @a.id).last
+    <% 
+       id = @a.id
+       if (id.nil?)
+         $n = $archivelist.where("id > ?", id).first 
+         $p = $archivelist.where("id < ?", id).last
+       else
+         $n = $p = nil
+       end    
     %>
     <p align=right>   
     <%   if (!$p.nil?)
     %>
-     <%= link_to "<< Prev", letter_archives_path(:id => @a.id, :next=>0, :prev=>1)  %> 
+     <%= link_to "<< Prev", letter_archives_path(:id => id, :next=>0, :prev=>1)  %> 
     <% end %>
     <%   if (!$p.nil? && !$n.nil?) %>
      | 
     <% end %>
     <% if (!$n.nil?) %>
-	 <%= link_to "Next >> ", letter_archives_path(:id => @a.id, :next=>1, :prev=>0) %>
+	 <%= link_to "Next >> ", letter_archives_path(:id => id, :next=>1, :prev=>0) %>
     <% end %>  
     </p>
 	<p><%= @a.caption%> 
     <% access_level = check_current_access %>
     <% if (access_level==1) %>
-              <p> <%= link_to "Edit", edit_archives_path(:id => @a.id)  %></p>
+              <p> <%= link_to "Edit", edit_archives_path(:id =>id)  %></p>
             <% end %> </p> 
 	<% base_url = "https://ernie-tpics.s3.amazonaws.com/" 
   ppath = @a.path
