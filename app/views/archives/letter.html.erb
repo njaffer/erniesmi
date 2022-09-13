@@ -1,9 +1,12 @@
-
+<% str = params["s"]
+ %>
 <div class ="container">
-
-    <p align=left> <%= link_to "Back to Search Results", search_archives_path(:back => 1, :page => $lastpage)  %>
+   <% b = params["b"] 
+     if (b.eql? "1") %>
+    <p align=left> <%= link_to "Back to Search Results", search_archives_path(:back => 1, :page => $lastpage, :str => str)  %>
      </p>   
     <% 
+      end
        id = @a.id
        if (id.nil?)
          $n = $archivelist.where("id > ?", id).first 
