@@ -98,7 +98,7 @@ if (a.fname.nil?)
     <div class="row">
       <div class="col-2">
         <p>
-          <%= link_to image_tag(url, style: 'height:40%;width:40%;'), letter_archives_path(:id => a.id) %>
+          <%= link_to image_tag(url, style: 'height:40%;width:40%;'), letter_archives_path(:id => a.id, :b=>"0") %>
         </p>
         <% if (access_level==1) %>
           <p> <%= link_to "Edit", edit_archives_path(:id => a.id)  %></p>
@@ -106,7 +106,7 @@ if (a.fname.nil?)
 
       </div>
       <div class="col-10">  
-      <p class="card-title"><b>Title:</b> <%=a.caption%>  <%= link_to " More..", letter_archives_path(:id => a.id)  %>
+      <p class="card-title"><b>Title:</b> <%=a.caption%>  <%= link_to " More..", letter_archives_path(:id => a.id, :b=>"0")  %>
       <br>
       <b>Year:</b> <%= a.pyear %> <br>
       <b>Date:</b> <%= a.pdate %> <br>
