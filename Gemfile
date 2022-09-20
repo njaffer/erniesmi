@@ -64,4 +64,5 @@ gem 'devise-guests', '~> 0.6'
 gem 'mysql2'
 gem 'kaminari'
 gem 'openseadragon'
+gem 'aws-sdk', '~> 1.0'
 

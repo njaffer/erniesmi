@@ -41,8 +41,10 @@
     
 	if (@a.fname.nil?)
     fname_url = "ernie.png"
-   else 
+   elsif (ppath.length>0)
     fname_url = base_url+ ppath + "/" + @a.fname 
+   else 
+    fname_url = base_url + @a.fname  
    end  
 	 %>
 	<% url = image_url(fname_url)%>

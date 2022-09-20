@@ -25,7 +25,8 @@ module ApplicationHelper
       def concat_category
         id = params["id"] 
         one = Archive.where("id=?",id).first
-        str = one.category
+        str = ""
+        str = str + one.category if (!one.category.nil?)
         str = str + ", "+ one.category1 if (!one.category1.nil?)
         str = str + ", "+ one.category2 if (!one.category2.nil?)
         str = str + ", "+ one.category3 if (!one.category3.nil?)
