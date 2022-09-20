@@ -121,7 +121,6 @@ def save
 	a.price = params["pprice"]
 	a.cost = params["pcost"]
     
-   byebug 
     a.county1 = params["county1"]
     a.county2 = params["county2"]
     a.county3 = params["county3"]
