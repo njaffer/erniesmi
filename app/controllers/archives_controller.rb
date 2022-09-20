@@ -96,12 +96,23 @@ end
 
 def save
 
+  
 	#upload pic
-	base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" 
-	fname = params["fname"]	
+	#base_url = "https://ernie-tpics.s3.amazonaws.com/tpics/" 
+  # Make an object in your bucket for your upload
+    obj = S3_BUCKET.objects[params[:file].original_filename]
 
+    # Upload the file
+    obj.write(
+      file: params[:file],
+      acl: :public_read
+    )
+
+	fname = params[:file].original_filename
+  
 	a = Archive.new
 	a.fname = fname
+  a.path = ENV['S3_BUCKET']
 	a.caption = params["title"]
 	a.pyear = params["pyear"]
 	a.pdate = params["pdate"]
@@ -110,7 +121,7 @@ def save
 	a.price = params["pprice"]
 	a.cost = params["pcost"]
     
-    
+   byebug 
     a.county1 = params["county1"]
     a.county2 = params["county2"]
     a.county3 = params["county3"]

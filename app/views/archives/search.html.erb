@@ -35,8 +35,10 @@ if (flag)
 %>
 <% if (a.fname.nil?)
     fname_url = ""
-   else 
+   elsif (ppath.length>0)
     fname_url = base_url+ ppath + "/" + a.fname 
+   else 
+    fname_url = base_url + a.fname   
    end 
 %>
 <% url = image_url(fname_url)%>
@@ -64,31 +66,31 @@ if (flag)
     	  <% if (!a.county1.nil?) %>
     	    <%= link_to a.county1, search_archives_path(:county => a.county1)  %>
     	  <%end%> 
-    	  <% if (!a.county2.nil?) %>, 
+    	  <% if ( (!a.county2.nil?) && (a.county2.length>0) ) %>, 
     	    <%= link_to a.county2, search_archives_path(:county => a.county2)  %> 
     	  <%end%>
-    	  <% if (!a.county3.nil?) %>,
+    	  <% if ( (!a.county3.nil?) && (a.county2.length>0) ) %>,
     	    <%= link_to a.county3, search_archives_path(:county => a.county3)  %>
     	  <%end%> 
-         <% if (!a.county4.nil?) %>
+         <% if ( (!a.county4.nil?) && (a.county2.length>0) ) %>
           <%= link_to a.county4, search_archives_path(:county => a.county4)  %>
         <%end%> 
-        <% if (!a.county5.nil?) %>, 
+        <% if ( (!a.county5.nil?) && (a.county2.length>0)) %>, 
           <%= link_to a.county5, search_archives_path(:county => a.county5)  %> 
         <%end%>
-        <% if (!a.county6.nil?) %>,
+        <% if ( (!a.county6.nil?) && (a.county2.length>0) ) %>,
           <%= link_to a.county6, search_archives_path(:county => a.county6)  %>
         <%end%> 
-         <% if (!a.county7.nil?) %>
+         <% if ((!a.county7.nil?) && (a.county2.length>0)) %>
           <%= link_to a.county7, search_archives_path(:county => a.county7)  %>
         <%end%> 
-        <% if (!a.county8.nil?) %>, 
+        <% if ((!a.county8.nil?) && (a.county2.length>0) )%>, 
           <%= link_to a.county8, search_archives_path(:county => a.county8)  %> 
         <%end%>
-        <% if (!a.county9.nil?) %>,
+        <% if ( (!a.county9.nil?) && (a.county2.length>0)) %>,
           <%= link_to a.county9, search_archives_path(:county => a.county9)  %>
         <%end%> 
-        <% if (!a.county10.nil?) %>,
+        <% if ( (!a.county10.nil?) && (a.county2.length>0) ) %>,
           <%= link_to a.county10, search_archives_path(:county => a.county10)  %>
         <%end%> 
     	  <br>
