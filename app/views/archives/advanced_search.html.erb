@@ -9,10 +9,10 @@
   <div class="form-group">
     <div class="row ml-1">
        <div class="col-sm-1">
-          Keywords:
+         <p> Keywords:</p>
         </div>  
       <div class="col-sm-11" align="left">
-     <%= text_field_tag :searchterm, @searchterm, :size=> 40 %>
+     <%= text_field_tag :searchterm, @searchterm, :size=> 40 %> <%= select_tag "con011", options_for_select(@connector,@con011)  %> 
      </div> 
    </div>
     <div class="row ml-1">

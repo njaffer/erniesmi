@@ -224,6 +224,7 @@ def advanced_search
     @city2 = "" if @city2.nil?
     @city3 = "" if @city3.nil?
 
+    @con011 = params["con011"]
     @con1 = params["con1"]
     @con11 = params["con11"]
     @con12 = params["con12"]
@@ -268,7 +269,7 @@ def advanced_search
   else
 
     if (@searchterm.length > 1)
-      str =  "caption LIKE '%"+@searchterm+"%' AND"
+      str =  "caption LIKE '%"+@searchterm+"%'"+ @con011
     end  
 
     str = str +  " county LIKE '%" + @county + "%'" if (!@county.eql? "")
@@ -287,7 +288,10 @@ def advanced_search
   @category2 = @category2.gsub("'", "''")
   @category3 = @category3.gsub("'", "''")
  
-  
+  teststr = str.last(3)
+  if teststr.eql? "AND"
+   str =  str[0,str.length-3]
+  end  
 
   str = str + @con23 + " category LIKE '%" + @category + "%'" if (!@category.eql? "")
   str = str + @con3 + " category LIKE '%" + @category1 + "%'" if (!@category1.eql? "") 
