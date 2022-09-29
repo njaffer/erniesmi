@@ -249,12 +249,32 @@ def advanced_search
     @category2 = "" if @category2.nil?
     @category3 = "" if @category3.nil?
     
+    itemid = params["itemid"]
+    @searchterm = params["searchterm"]
 
+    if itemid.nil?
+      itemid = ""
+    end
+
+    if @searchterm.nil?
+      @searchterm = ""
+    end
+  
+  itemid.strip!    
   str = ""
-  str = str +  " county LIKE '%" + @county + "%'" if (!@county.eql? "")
-  str = str + @con1 + " county LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
-  str = str + @con11+ " county LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
-  str = str + @con12+ " county LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
+
+  if (itemid.length > 1)
+    str = "old_id='" + itemid +"'"
+  else
+
+    if (@searchterm.length > 1)
+      str =  "caption LIKE '%"+@searchterm+"%' AND"
+    end  
+
+    str = str +  " county LIKE '%" + @county + "%'" if (!@county.eql? "")
+    str = str + @con1 + " county LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
+    str = str + @con11+ " county LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
+    str = str + @con12+ " county LIKE '%"+ @county3 + "%'"  if (!@county3.eql? "")
 
     str = str + @con13 + " city LIKE '%" + @city + "%'" if (!@city.eql? "")
     str = str + @con2+ " city LIKE '%"+ @city1 + "%'"  if (!@city1.eql? "")
@@ -286,10 +306,15 @@ def advanced_search
   	str = str.last(len)
   end
   
+  end
   len = str.length
 
+  teststr = str.last(3)
+  if teststr.eql? "AND"
+   str =  str[0,len-3]
+  end
+
   
- 
   if (len> 6 && (params["no"]))
     str = str + "AND pic_status=false "	
   elsif (len> 6)
@@ -299,6 +324,7 @@ def advanced_search
   elsif ( params["no"])
       str = "pic_status=false "         
   end 
+    
     
   @archives = Archive.where(str).page params[:page]
   @total_archives = Archive.where(str)
