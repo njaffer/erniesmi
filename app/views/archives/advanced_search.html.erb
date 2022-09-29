@@ -7,7 +7,14 @@
   <div class="card" style=" margin-top: 10px; margin-bottom: 20px; padding-top: 15px; background-color: #F5F5F5;">
 	<%= form_tag(advanced_search_archives_path, :enctype =>"multipart/form-data") do %>
   <div class="form-group">
-    
+    <div class="row ml-1">
+       <div class="col-sm-1">
+          Keywords:
+        </div>  
+      <div class="col-sm-11" align="left">
+     <%= text_field_tag :searchterm, @searchterm, :size=> 40 %>
+     </div> 
+   </div>
     <div class="row ml-1">
     <div class="col-sm-1">
      <%= label_tag :county %>
@@ -41,7 +48,7 @@
       <%= select_tag :category3, options_from_collection_for_select(@acategory, "name", "name", @category3) , :include_blank => true  %>
     </div>
      </div>
-     <% if (access_level==1) %>
+     <% if (access_level==1) %> 
      <div class="row ml-1">
     <div class="col-sm-1" align="left">
       Status:
@@ -61,6 +68,14 @@
        <%= label_tag(:no, "False") %>
      </div>
     </div>
+    <div class="row ml-1">
+    <div class="col-sm-1" align="left">
+      Item ID:
+    </div>  
+     <div class="col-sm-11" align="left"> 
+     <%= text_field_tag :itemid, "" %>
+     </div> 
+   </div>
     <% end %>
   </div>
   <div class="form-group">
