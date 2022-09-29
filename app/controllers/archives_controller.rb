@@ -7,6 +7,37 @@ def index
 	
 end
 
+def cat
+  str = ""
+
+  Archive.all.each do |a| 
+    if ((a.category.nil?) || (a.category.eql? "") )
+      str =  a.category1 if (!a.category1.nil?)
+      str = str + ", "+ a.category2 if (!a.category2.nil?)
+      str = str + ", "+ a.category3 if (!a.category3.nil?)
+      str = str + ", "+ a.category4 if (!a.category4.nil?)
+      str = str + ", "+ a.category5 if (!a.category5.nil?)
+      str = str + ", "+ a.category6 if (!a.category6.nil?)
+      str = str + ", "+ a.category7 if (!a.category7.nil?)
+      str = str + ", "+ a.category8 if (!a.category8.nil?)
+      str = str + ", "+ a.category9 if (!a.category9.nil?)
+      str = str + ", "+ a.category10 if (!a.category10.nil?)
+      str = str + ", "+ a.category11 if (!a.category11.nil?)
+      str = str + ", "+ a.category12 if (!a.category12.nil?)
+      str = str + ", "+ a.category13 if (!a.category13.nil?)
+      str = str + ", "+ a.category14 if (!a.category14.nil?)
+      str = str + ", "+ a.category15 if (!a.category15.nil?)
+      str = str + ", "+ a.category16 if (!a.category16.nil?)
+      str = str + ", "+ a.category17 if (!a.category17.nil?)
+      str = str + ", "+ a.category18 if (!a.category18.nil?)
+      str = str + ", "+ a.category19 if (!a.category19.nil?)
+      str = str + ", "+ a.category20 if (!a.category20.nil?)
+      a.category = str
+      a.save!
+    end
+  end  
+       
+end  
 def new
 	@acategory = Acategory.all.order(:name)
 	@acounty = Acounty.all.order(:name)
@@ -329,7 +360,7 @@ def advanced_search
       str = "pic_status=false "         
   end 
     
-    
+   
   @archives = Archive.where(str).page params[:page]
   @total_archives = Archive.where(str)
 
@@ -345,7 +376,7 @@ def advanced_search
 end	
 
 def search 
-
+  
  if (params["back"].eql? "1")
  	params["back"] = 0
   searchterm = params["str"] 
