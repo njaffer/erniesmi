@@ -192,7 +192,15 @@ if (a.fname.nil?)
         <%=a.category20 %> 
         <br>
       
-      <b>Pages: </b>  
+      <%
+          associated = Archive.where("ptype=?",a.old_id)
+          associated_count = associated.count
+          if (associated_count==0  && a.ptype != nil && a.ptype >0)
+            associated = Archive.where("ptype=?",a.ptype)
+            associated_count = associated.count
+          end  
+        %>
+        <b>Associated Pages: </b><%=associated_count%>  
       
       </p>
         </div>
