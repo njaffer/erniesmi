@@ -312,7 +312,6 @@ def advanced_search
     str = str + @con2+ " city LIKE '%"+ @city1 + "%'"  if (!@city1.eql? "")
     str = str + @con21+ " city LIKE '%"+ @city2 + "%'"  if (!@city2.eql? "")
     str = str + @con22+ " city LIKE '%"+ @city3 + "%'"  if (!@city3.eql? "")
-  
 
   @category = @category.gsub("'", "''")
   @category1 = @category1.gsub("'", "''")
@@ -405,7 +404,7 @@ def search
   county = params["county"]
   city = params["city"]
   category = params["category"]
-
+  
   if ( (!countysearch.nil?) || ( (county != "") && (!county.eql? nil)) )
     searchterm = params["county"]
   str = "county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"   
@@ -423,6 +422,7 @@ def search
 
   elsif ( category != "" && (!category.eql? nil) ) 
     searchterm = params["category"]
+    searchterm = searchterm.gsub("'", "''")
   str = "category LIKE '%"+searchterm+"%' OR category1 LIKE '%"+searchterm+"%' OR category2 LIKE '%"+searchterm+"%' OR category3 LIKE '%"+searchterm+"%'"
   str = str + " OR category4 LIKE '%"+searchterm+"%' OR category5 LIKE '%"+searchterm+"%' OR category6 LIKE '%"+searchterm+"%' OR category7 LIKE '%"+searchterm+"%' OR category8 LIKE '%"+searchterm+"%' OR category9 LIKE '%"+searchterm+"%'"    
   str = str + "AND pic_status=true"

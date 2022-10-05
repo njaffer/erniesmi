@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_10_200358) do
+ActiveRecord::Schema.define(version: 2022_10_03_235139) do
 
   create_table "acategories", force: :cascade do |t|
     t.string "name"
@@ -105,6 +105,40 @@ ActiveRecord::Schema.define(version: 2022_09_10_200358) do
   end
 
   create_table "contacts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genealogies", force: :cascade do |t|
+    t.string "name"
+    t.string "town"
+    t.string "dt"
+    t.string "county"
+    t.boolean "emi"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "guides", force: :cascade do |t|
+    t.string "tag"
+    t.text "oneline"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "manuscripts", force: :cascade do |t|
+    t.string "mnum"
+    t.string "c_or_s"
+    t.string "ste"
+    t.string "town"
+    t.string "m"
+    t.string "dd"
+    t.string "yr"
+    t.string "marking"
+    t.string "county"
+    t.boolean "emi"
+    t.integer "old_id"
+    t.integer "new_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

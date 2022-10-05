@@ -1,0 +1,46 @@
+<% city = params["city"] %>
+<div class="container">
+<p><strong>Towns with Manuscript Postal Markings</strong></p>
+
+<p><strong>Town: <%= city %></strong> <%= link_to "Back to Cities" , manuscripts_archives_path%></p>
+ 
+<div class="row" style="background-color: #e3e3e3;">
+	<div class="col">Owner</div>
+	<div class="col">Cover/Stampless</div>
+	<div class="col">STE</div>
+	<div class="col">Town</div>
+	<div class="col">M</div>
+	<div class="col">Date</div>
+	<div class="col">Year</div>
+	<div class="col">Marking</div>
+	<div class="col">County</div>
+	<div class="col">EMI?</div>
+	
+
+</div>
+<%
+  m_list = Manuscript.where("town=?",city)
+  m_list.each do |m|
+  if (m.mnum.eql? "****")
+  	j_str = "Public"
+  else
+  	j_str = "Private"
+  end	
+%>
+<div class="row">
+	<div class="col"><%= j_str %></div>
+	<div class="col"><%= m.c_or_s %></div>
+	<div class="col"><%= m.ste %></div>
+	<div class="col"><%= m.town %></div>
+	<div class="col"><%= m.m %></div>
+	<div class="col"><%= m.dd %></div>
+	<div class="col"><%= m.yr %></div>
+	<div class="col"><%= m.marking %></div>
+	<div class="col"><%= m.county %></div>
+	<div class="col"><% if (m.emi==1) %>Yes<% else %>No<% end %>
+	<% if (m.emi==1) %><%= link_to "View",letter_archives_path(:id => m.old_id)%><%end%></div>
+</div>
+<%  	
+  end	
+%>
+</div>

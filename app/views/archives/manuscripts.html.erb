@@ -1,0 +1,35 @@
+<div class="container">
+<p><strong>Towns with Manuscript Postal Markings</strong></p>
+
+<p><strong>List maintained by Greg Stone</strong></p>
+
+<p>Manuscript postal markings were, usually, the first markings used in a town and, therefore, are much sought after by collectors. When a town was new or small the Postmaster would write in cursive the name of the town and the date the letter was postmarked and the rate (cost) to send the letter. In addition a notation of “Paid” would be added to those letters that were prepaid by the sender. As the outgoing letter volume for a town increased, they would acquire a circular datemarking device (CDS) and the manuscript cancels would not be used unless an emergency arose.</p>
+
+<p><strong>Navigation of List</strong></p>
+
+<p>Selecting a town will bring up the list of the known manuscript postal markings from that town. If the letter that you are interested in is in the erniesmichigan.com archives you can select the link and you will be taken to a list of letters from your letter’s date. You would then select the letter that you want to view. When you are done viewing all that you would like to know about that letter, you can follow the link back to the list of manuscript towns, and continue your selections. If additional manuscript cancels are known by collectors, please notify Greg Stone directly or through erniesmichigan@gmail.com</p>
+ 
+<div class="row" style="background-color: #e3e3e3;">
+	<div class="col"><strong>List of Cities</strong></div>
+</div>	
+<div class="row">
+<%
+  count = 0
+  m_list = Manuscript.group(:town).distinct
+  m_list.each do |m|
+  count+=1
+  if (count%5==0)
+%>
+</div>
+<div class="row">
+<% end %>	
+	<div class="col">
+	  <% if !m.town.nil? %>
+		<%= link_to m.town , manuscripts_city_archives_path(:city => m.town)%>
+	  <% end %>		
+	</div>
+<% 	
+  end	
+%>
+</div>
+</div>
