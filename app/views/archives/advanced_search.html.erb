@@ -59,23 +59,27 @@
        <% else %>
        <%= check_box_tag (:yes) %>
        <% end %>
-       <%= label_tag(:yes, "True") %> &nbsp;&nbsp;&nbsp;&nbsp;
+       <%= label_tag(:yes, "Active") %> &nbsp;&nbsp;&nbsp;&nbsp;
        <% if (params["no"]) %>
        <%= check_box_tag :no, 1, true %>
        <% else %>
        <%= check_box_tag (:no) %>
        <% end %>
-       <%= label_tag(:no, "False") %>
+       <%= label_tag(:no, "Inactive") %>
      </div>
     </div>
     <div class="row ml-1">
     <div class="col-sm-1" align="left">
-      Item ID:
+      ID: 
     </div>  
-     <div class="col-sm-11" align="left"> 
-     <%= text_field_tag :itemid, "" %>
+    <div class="col-sm-5" align="left">  
+      <%= text_field_tag :itemid_new, "" %>
+    </div>
+     <div class="col-sm-6" align="left"> 
+     Old ID: <%= text_field_tag :itemid, "" %>
      </div> 
    </div>
+
     <% end %>
   </div>
   <div class="form-group">
@@ -98,6 +102,8 @@
 
 if (a.fname.nil?)
     fname_url = "https://ernie-tpics.s3.amazonaws.com/ernie.png"
+  elsif ppath.length==0
+        fname_url = base_url+ a.fname 
    else 
     fname_url = base_url+ ppath + "/"+ a.fname 
    end 
