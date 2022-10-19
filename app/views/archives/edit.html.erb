@@ -10,7 +10,10 @@
   <%= form_tag(editsave_archives_path, :enctype =>"multipart/form-data") do %>
 
   <div class="card" style="width: 45rem; padding-left: 10px;">
+    <p>  ID: <%=@one.id %> | Old ID: <%= @one.old_id %> </p>
   <p>Filename: <br><input name="fname" value="<%= @one.fname %>" size=50></p>  
+    <p>Path:<br><input name="path" type="text" value="<%=@one.path%>"></p>
+  
   <p>Title: <textarea name="title" row="3" cols="80"><%= @one.caption %></textarea></p>
   </div>
    <div class="card" style="width: 45rem; padding-left: 10px;">
@@ -22,6 +25,7 @@
   <div class="card" style="width: 45rem; padding-left: 10px;">
     <p>Year:<br><input name="pyear" type="text" value="<%=@one.pyear%>"></p>
   </div>
+
   <div class="card" style="width: 45rem; padding-left: 10px;">
     <p>Date:<br><input name="pdate" type="text" value="<%=@one.pdate%>"></p>
   </div>

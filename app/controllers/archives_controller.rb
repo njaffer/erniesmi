@@ -58,6 +58,7 @@ def editsave
 
   a = Archive.where("id=?",id).first
   a.fname = params["fname"]
+  a.path = params["path"]
   a.caption = params["title"]
   a.pyear = params["pyear"]
   a.pdate = params["pdate"]
@@ -135,6 +136,7 @@ def save
 
     # Upload the file
     obj.write(
+      bucket: ENV['S3_BUCKET'],
       file: params[:file],
       acl: :public_read
     )
@@ -143,11 +145,14 @@ def save
   
 	a = Archive.new
 	a.fname = fname
-  a.path = ENV['S3_BUCKET']
+  a.path = ""
 	a.caption = params["title"]
 	a.pyear = params["pyear"]
 	a.pdate = params["pdate"]
 	a.pic_status = params["pic_status"]
+  if a.pic_status.nil?
+    a.pic_status = false
+  end  
 	a.cover_page = params["cover_page"]
 	a.price = params["pprice"]
 	a.cost = params["pcost"]
@@ -282,21 +287,29 @@ def advanced_search
     @category3 = "" if @category3.nil?
     
     itemid = params["itemid"]
+    itemid_new = params["itemid_new"]
     @searchterm = params["searchterm"]
 
     if itemid.nil?
       itemid = ""
     end
 
+    if itemid_new.nil?
+      itemid_new = ""
+    end
+
     if @searchterm.nil?
       @searchterm = ""
     end
   
-  itemid.strip!    
+  itemid.strip! 
+  itemid_new.strip!    
   str = ""
 
   if (itemid.length > 1)
     str = "old_id='" + itemid +"'"
+  elsif (itemid_new.length > 1)
+    str = "id='" + itemid_new +"'"  
   else
 
     if (@searchterm.length > 1)
@@ -348,8 +361,11 @@ def advanced_search
    str =  str[0,len-3]
   end
 
-  
-  if (len> 6 && (params["no"]))
+  if (len> 6 && (params["no"]) && (params["yes"]))
+    str = str + "AND (pic_status=false OR pic_status=true) "
+  elsif (len< 6 && (params["no"]) && (params["yes"]))
+    str = str + "(pic_status=false OR pic_status=true) "  
+  elsif (len> 6 && (params["no"]))
     str = str + "AND pic_status=false "	
   elsif (len> 6)
     str = str + "AND pic_status=true "        
@@ -359,7 +375,6 @@ def advanced_search
       str = "pic_status=false "         
   end 
     
-   
   @archives = Archive.where(str).page params[:page]
   @total_archives = Archive.where(str)
 
