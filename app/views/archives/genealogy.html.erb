@@ -1,0 +1,14 @@
+ <div class="container">
+  <h3>GENEOLOGY BY COUNTY</h3></p>
+  <p><strong>Michigan Genealogy Surname list by County on erniesmichigan.com</strong></p>
+  <p>These Surnames listed here are the names of people that sent or received a letter that is in erniesmichigan.com archives. Names of other people named in letters or signing a letter signifying that they agree with what is being said in the letter are also included in the list. If a letter is being sent from one Michigan County to another Michigan county it is being included in both counties lists. The correct spellings for names are being checked in many ways, but names in the time period were sometimes spelled in several ways.</p>
+  <p><strong>Navigating the Michigan Genealogy Surname List</strong></p>
+  <p>If you know the county that your person lived in, you might start out by looking at the list from that county or adjoining counties. People sometimes lived in one county, but their mail was postmarked in another county. You might check Wayne County also for anyone living anywhere in Michigan since a lot of mail went all the way to Detroit before it was postmarked. Even if you find your person you might also use the keyword search line in the regular archives search so that you can catch any mail that was sent from any other place in Michigan. Once you have found the person in the county list you can select for that letter and you will be taken to all the letters that were sent on that day. Then you select the letter you want to see. If you wish to return to the Genealogy List you can select the link to take you there.</p>
+  <p>If anyone has additional information please contact me at erniesmichigan@gmail.com</p>
+  <%
+  Genealogy.all.each do |g|
+  %>
+  <%= g.county %>
+  <% end	
+  %>
+ </div> 
