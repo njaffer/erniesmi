@@ -133,68 +133,68 @@ if (a.fname.nil?)
       <b>Date:</b> <%= a.pdate %> <br>
       <b>County:</b> 
         
-        <% if (!a.county1.nil?) %>
+        <% if ((!a.county1.eql? "") && (!@a.county1.eql? nil))%>
           <%= link_to a.county1, search_archives_path(:county => a.county1)  %>
         <%end%> 
-        <% if (!a.county2.nil?) %>, 
+        <% if ((!a.county2.eql? "") && (!@a.county2.eql? nil)) %>, 
           <%= link_to a.county2, search_archives_path(:county => a.county2)  %> 
         <%end%>
-        <% if (!a.county3.nil?) %>,
+        <% if ((!a.county3.eql? "") && (!@a.county3.eql? nil)) %>,
           <%= link_to a.county3, search_archives_path(:county => a.county3)  %>
         <%end%> 
-         <% if (!a.county4.nil?) %>
+         <% if ((!a.county4.eql? "") && (!@a.county4.eql? nil)) %>
           <%= link_to a.county4, search_archives_path(:county => a.county4)  %>
         <%end%> 
-        <% if (!a.county5.nil?) %>, 
+        <% if ((!a.county5.eql? "") && (!@a.county5.eql? nil))%>, 
           <%= link_to a.county5, search_archives_path(:county => a.county5)  %> 
         <%end%>
-        <% if (!a.county6.nil?) %>,
+        <% if ((!a.county6.eql? "") && (!@a.county6.eql? nil)) %>,
           <%= link_to a.county6, search_archives_path(:county => a.county6)  %>
         <%end%> 
-         <% if (!a.county7.nil?) %>
+         <%if ((!a.county7.eql? "") && (!@a.county7.eql? nil)) %>
           <%= link_to a.county7, search_archives_path(:county => a.county7)  %>
         <%end%> 
-        <% if (!a.county8.nil?) %>, 
+        <% if ((!a.county8.eql? "") && (!@a.county8.eql? nil)) %>, 
           <%= link_to a.county8, search_archives_path(:county => a.county8)  %> 
         <%end%>
-        <% if (!a.county9.nil?) %>,
+        <% if ((!a.county9.eql? "") && (!@a.county9.eql? nil))%>,
           <%= link_to a.county9, search_archives_path(:county => a.county9)  %>
         <%end%> 
-        <% if (!a.county10.nil?) %>,
+        <% if ((!a.county10.eql? "") && (!@a.county10.eql? nil)) %>,
           <%= link_to a.county10, search_archives_path(:county => a.county10)  %>
         <%end%> 
         <br>
       <b>City:</b> 
-        <%=a.city1 %> <% if (!a.city2.nil?) %>,<%end%> 
-        <%=a.city2 %> <% if (!a.city3.nil?) %>,<%end%> 
-        <%=a.city3 %> <% if (!a.city4.nil?) %>,<%end%> 
-        <%=a.city4 %> <% if (!a.city5.nil?) %>,<%end%> 
-        <%=a.city5 %> <% if (!a.city6.nil?) %>,<%end%> 
-        <%=a.city6 %> <% if (!a.city7.nil?) %>,<%end%> 
-        <%=a.city7 %> <% if (!a.city8.nil?) %>,<%end%> 
-        <%=a.city8 %> <% if (!a.city9.nil?) %>,<%end%> 
-        <%=a.city9 %> <% if (!a.city10.nil?) %>,<%end%> 
+        <%=a.city1 %> <% if ((!a.city2.eql? "") && (!a.city2.eql? nil)) %>,<%end%> 
+        <%=a.city2 %> <% if ((!a.city3.eql? "") && (!a.city3.eql? nil)) %>,<%end%> 
+        <%=a.city3 %> <% if ((!a.city4.eql? "") && (!a.city4.eql? nil)) %>,<%end%> 
+        <%=a.city4 %> <% if ((!a.city5.eql? "") && (!a.city5.eql? nil)) %>,<%end%> 
+        <%=a.city5 %> <% if ((!a.city6.eql? "") && (!a.city6.eql? nil)) %>,<%end%> 
+        <%=a.city6 %> <% if ((!a.city7.eql? "") && (!a.city7.eql? nil)) %>,<%end%> 
+        <%=a.city7 %> <% if ((!a.city8.eql? "") && (!a.city8.eql? nil)) %>,<%end%> 
+        <%=a.city8 %> <% if ((!a.city9.eql? "") && (!a.city9.eql? nil)) %>,<%end%> 
+        <%=a.city9 %> <% if ((!a.city10.eql? "") && (!a.city10.eql? nil)) %>,<%end%> 
         <%=a.city10 %><br>
       <b>Category:</b> 
-        <%=a.category1 %> <% if (!a.category2.nil?) %>,<%end%> 
-        <%=a.category2 %> <% if (!a.category3.nil?) %>,<%end%> 
-        <%=a.category3 %> <% if (!a.category4.nil?) %>,<%end%> 
-        <%=a.category4 %> <% if (!a.category5.nil?) %>,<%end%> 
-        <%=a.category5 %> <% if (!a.category6.nil?) %>,<%end%> 
-        <%=a.category6 %> <% if (!a.category7.nil?) %>,<%end%> 
-        <%=a.category7 %> <% if (!a.category8.nil?) %>,<%end%> 
-        <%=a.category8 %> <% if (!a.category9.nil?) %>,<%end%> 
-        <%=a.category9 %> <% if (!a.category10.nil?) %>,<%end%> 
-        <%=a.category10 %> <% if (!a.category11.nil?) %>,<%end%> 
-        <%=a.category11 %> <% if (!a.category12.nil?) %>,<%end%> 
-        <%=a.category12 %> <% if (!a.category13.nil?) %>,<%end%> 
-        <%=a.category13 %> <% if (!a.category14.nil?) %>,<%end%> 
-        <%=a.category14 %> <% if (!a.category15.nil?) %>,<%end%> 
-        <%=a.category15 %> <% if (!a.category16.nil?) %>,<%end%> 
-        <%=a.category16 %> <% if (!a.category17.nil?) %>,<%end%> 
-        <%=a.category17 %> <% if (!a.category18.nil?) %>,<%end%> 
-        <%=a.category18 %> <% if (!a.category19.nil?) %>,<%end%> 
-        <%=a.category19 %> <% if (!a.category20.nil?) %>,<%end%> 
+        <%=a.category1 %> <% if ((!a.category2.eql? "") && (!a.category2.eql? nil)) %>,<%end%> 
+        <%=a.category2 %> <% if ((!a.category3.eql? "") && (!a.category3.eql? nil)) %>,<%end%> 
+        <%=a.category3 %> <% if ((!a.category4.eql? "") && (!a.category4.eql? nil)) %>,<%end%> 
+        <%=a.category4 %> <% if ((!a.category5.eql? "") && (!a.category5.eql? nil)) %>,<%end%> 
+        <%=a.category5 %> <% if ((!a.category6.eql? "") && (!a.category6.eql? nil)) %>,<%end%> 
+        <%=a.category6 %> <% if ((!a.category7.eql? "") && (!a.category7.eql? nil)) %>,<%end%> 
+        <%=a.category7 %> <% if ((!a.category8.eql? "") && (!a.category8.eql? nil)) %>,<%end%> 
+        <%=a.category8 %> <% if ((!a.category9.eql? "") && (!a.category9.eql? nil)) %>,<%end%> 
+        <%=a.category9 %> <% if ((!a.category10.eql? "") && (!a.category10.eql? nil)) %>,<%end%> 
+        <%=a.category10 %> <% if ((!a.category11.eql? "") && (!a.category11.eql? nil)) %>,<%end%> 
+        <%=a.category11 %> <% if ((!a.category12.eql? "") && (!a.category12.eql? nil)) %>,<%end%> 
+        <%=a.category12 %> <% if ((!a.category13.eql? "") && (!a.category13.eql? nil)) %>,<%end%> 
+        <%=a.category13 %> <% if ((!a.category14.eql? "") && (!a.category14.eql? nil)) %>,<%end%> 
+        <%=a.category14 %> <% if ((!a.category15.eql? "") && (!a.category15.eql? nil)) %>,<%end%> 
+        <%=a.category15 %> <% if ((!a.category16.eql? "") && (!a.category16.eql? nil)) %>,<%end%> 
+        <%=a.category16 %> <% if ((!a.category17.eql? "") && (!a.category17.eql? nil)) %>,<%end%> 
+        <%=a.category17 %> <% if ((!a.category18.eql? "") && (!a.category18.eql? nil)) %>,<%end%> 
+        <%=a.category18 %> <% if ((!a.category19.eql? "") && (!a.category19.eql? nil)) %>,<%end%> 
+        <%=a.category19 %> <% if ((!a.category20.eql? "") && (!a.category20.eql? nil)) %>,<%end%> 
         <%=a.category20 %> 
         <br>
       
