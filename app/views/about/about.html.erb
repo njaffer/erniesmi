@@ -1,7 +1,9 @@
 <%
-a = Archive.where("pdate LIKE '%/%'")
-a.first.pdate = a.first.caption[0..9]
-
+bad_a = Archive.where("pdate LIKE '%/%'")
+ bad_a.each do |a| 
+ a.pdate = a.caption[0..9]
+ a.save!
+end 
 %>
 <div class="container">
 	<h2>About Ernie's Michigan Historical Archives</h2>
@@ -14,5 +16,5 @@ a.first.pdate = a.first.caption[0..9]
 <p>Each of the letters in my collection have a story to tell, and I feel that I am the conservator of each letter while it is in my possession. After I am gone the next collector who owns that letter will be its conservator. The same may be said of the publicly held letters in special places like the Bentley Historical Library at the University of Michigan. These institutions are the conservators of letters and historical documents entrusted to them by the previous owners of those materials.</p>
 
 <p>We are all saving history for future generations. I hope that the letters on my site, held by collectors and public institutions, will give the people who read and research them a deeper understanding of our predecessors. That knowledge and understanding can make the future a better place for us to all live in together. </p>
-<%= a.first.pdate %>
+
 </div>	
