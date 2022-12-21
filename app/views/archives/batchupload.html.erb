@@ -1,0 +1,19 @@
+<div class="container">
+  
+<h4> Batch Upload </h4>
+
+<%= form_tag("batchsave", :enctype =>"multipart/form-data") do %>
+   <div class="row">
+     <div class="field">
+       <%= file_field_tag :folder,  :required => true, :multiple => true  %>
+     </div>
+   </div>
+
+   <div class="row">
+   <div class="actions">
+      <%= submit_tag 'Next' %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
+   </div>
+
+<% end %>   
+</div>

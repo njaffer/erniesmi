@@ -1,0 +1,11 @@
+<div class="container">
+	<%
+	folder = params["folder"]
+	 Dir[folder].each do |file_name|
+	 	%>
+	 	<%= file_name %>
+	 <%	
+  next if File.directory? file_name 
+ end
+	%>
+</div>	
