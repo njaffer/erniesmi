@@ -466,7 +466,30 @@ def search
     @searchterm = searchterm
 end	
 
+def batchsave
+ # a = Archive.new
+ # a.title = fname 
+ 
+ 
+
+end
+
 def import
+  uploaded_csv = params[:file]  
+  csv_text = File.read(uploaded_csv)
+
+  csv = CSV.parse(csv_text, :headers => true)
+  csv.each do |row|
+    row_hash = row.to_hash
+    old_id = row_hash["id"];
+    a= Archive.where("old_id ="+old_id)
+    if a.first != nil
+     puts "a="+ a.first.cover_page
+    end
+  end 
+end  
+
+def old_import
   uploaded_csv = params[:file]	
   csv_text = File.read(uploaded_csv)
 
