@@ -6,9 +6,8 @@
   <p>If you know the county that your person lived in, you might start out by looking at the list from that county or adjoining counties. People sometimes lived in one county, but their mail was postmarked in another county. You might check Wayne County also for anyone living anywhere in Michigan since a lot of mail went all the way to Detroit before it was postmarked. Even if you find your person you might also use the keyword search line in the regular archives search so that you can catch any mail that was sent from any other place in Michigan. Once you have found the person in the county list you can select for that letter and you will be taken to all the letters that were sent on that day. Then you select the letter you want to see. If you wish to return to the Genealogy List you can select the link to take you there.</p>
   <p>If anyone has additional information please contact me at erniesmichigan@gmail.com</p>
   <%
-  Genealogy.distinct.pluck(:county).each do |g|
+  Genealogy.select("DISTINCT(county)").order("county").each do |g|
   %>
-  <%= g %><br>
-  <% end	
-  %>
+  <%= g.county %><br>
+  <% end %>
  </div> 
