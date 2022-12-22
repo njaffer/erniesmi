@@ -18,7 +18,7 @@
   <div class="row">
   <% end %>	
   <div class="col">
-	  <% if !m.town.nil?
+	  <% if !g.county.nil?
           gstr = g.county +"(" + county_cnt + ")"
 	   %>
 		<%= link_to gstr , genealogy_county_archives_path(:county => g.county)%>
