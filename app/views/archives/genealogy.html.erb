@@ -12,16 +12,15 @@
   Genealogy.select("DISTINCT(county)").order("county").each do |g|
   county_cnt = Genealogy.where("county=?",g.county).count
   s = county_cnt.to_s
-  
-  count+=1
-  if (count%5==0)
+  if (count%3==0)
   %>
   </div>
   <div class="row">
   <% end %>	
   <div class="col">
 	  <% if !g.county.nil?
-          gstr = g.county +"(" + s + ")"
+          gstr = g.county + "(" + s + ")"
+          count+=1
 	   %>
 		<%= link_to gstr , genealogy_county_archives_path(:county => g.county)%>
 	  <% end %>		
