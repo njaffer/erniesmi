@@ -1,0 +1,29 @@
+<% county = params["county"] %>
+<div class="container">
+<p><strong>Michigan Genealogy Surname list by County</strong></p>
+
+<p><strong>County: <%= county %></strong> <%= link_to "Back to Cities" , manuscripts_archives_path%></p>
+ 
+<div class="row" style="background-color: #e3e3e3;">
+	<div class="col">Name</div>
+	<div class="col">Town</div>
+	<div class="col">Date</div>
+	<div class="col">On Ernies Michigan?</div>
+	
+
+</div>
+<%
+  g_list = Genealogy.where("county=?",county)
+  g_list.each do |g|
+%>
+<div class="row">
+	<div class="col"><%= g.name %></div>
+	<div class="col"><%= g.town %></div>
+	<div class="col"><%= g.dt %></div>
+	<div class="col"><% if (g.emi==1) %>Yes<% else %>No<% end %>
+	<% if (g.emi==1) %><%= link_to "View",letter_archives_path(:id => g.id)%><%end%></div>
+</div>
+<%  	
+  end	
+%>
+</div>
