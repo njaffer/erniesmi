@@ -302,6 +302,10 @@ def advanced_search
       @searchterm = ""
     end
   
+    if @con011.nil?
+      @con011=""
+    end
+      
   itemid.strip! 
   itemid_new.strip!    
   str = ""

@@ -21,7 +21,9 @@
 	<div class="col"><%= g.town %></div>
 	<div class="col"><%= g.dt %></div>
 	<div class="col"><% if (g.emi==1) %>Yes<% else %>No<% end %>
-	<% if (g.emi==1) %><%= link_to "View",letter_archives_path(:id => g.id)%><%end%></div>
+	<% if (g.emi==1) %><%= link_to "View",advanced_search_archives_path(:searchterm => g.dt)%><%end%>
+		<%= link_to "View",advanced_search_archives_path(:searchterm => g.dt)%>
+	</div>
 </div>
 <%  	
   end	
