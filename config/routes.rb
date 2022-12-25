@@ -16,7 +16,8 @@ resources :archives do
 
 resources :about do
     collection do
-      get :about, :bookshelf, :stamp, :genealogy, :history, :national
+      get :about, :bookshelf, :stamp, :genealogy, :history, :national, :import_data
+      post :import
     end
   end   
  
