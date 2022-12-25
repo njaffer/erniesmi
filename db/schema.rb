@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_03_235139) do
+ActiveRecord::Schema.define(version: 2022_12_24_052206) do
 
   create_table "acategories", force: :cascade do |t|
     t.string "name"
@@ -162,6 +162,17 @@ ActiveRecord::Schema.define(version: 2022_10_03_235139) do
   end
 
   create_table "searches", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "stamps", force: :cascade do |t|
+    t.string "cName"
+    t.string "pName"
+    t.string "Address"
+    t.string "MTimes"
+    t.string "Waddr"
+    t.string "Com"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

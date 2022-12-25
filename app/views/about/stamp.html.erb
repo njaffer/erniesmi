@@ -1,1 +1,9 @@
-About
+<div class="container">
+  <h2>List of Stamp Clubs</h2>
+  <% s_list = Stamp.all.each do |s| %>
+  <hr>
+  <p><strong><%=s.cName%></strong></p>
+  <p><%=s.pName %><br><%=s.Address%><br><%=s.MTimes%><br><%=s.Waddr %><br><%=s.Com%></p>
+  
+  <% end %>
+</div> 
