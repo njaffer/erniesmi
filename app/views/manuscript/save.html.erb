@@ -1,0 +1,24 @@
+<%
+id = params["id"]
+if (id.eql? "0")
+  @one = Manuscript.new
+else
+ @one = Manuscript.where("id=?",id)
+ @one = @one.first 
+end
+
+@one.mnum = params["mnum"]
+@one.c_or_s = params["c_or_s"]
+@one.ste = params["ste"]
+@one.town = params["town"]
+@one.m = params["m"]
+@one.dd = params["dd"]
+@one.yr = params["yr"]
+@one.marking = params["marking"]
+@one.county = params["county"]
+@one.emi = params["emi"]
+@one.save!
+%>
+<div class="container">
+<p>Manuscript Saved...<%= link_to "Back to List of Towns" , manuscripts_archives_path%></p>
+</div>

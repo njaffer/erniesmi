@@ -1,0 +1,39 @@
+<% id = params["id"] %>
+<% 
+if (id.eql? "0")
+  @one = Manuscript.new
+else
+ @one = Manuscript.where("id=?",id)
+@one = @one.first 
+end
+
+%>
+<div class="container">
+
+  <h4> Edit Manuscript</h4> 
+ 
+  <%= form_tag(save_manuscript_index_path, :enctype =>"multipart/form-data") do %>
+
+  <div class="card" style="width: 45rem; padding-left: 10px;">
+  <p>Town <br><input name="town" value="<%= @one.town %>" size=50></p>  
+    <p>Cover/Stampless<br><input name="c_or_s" type="text" value="<%=@one.c_or_s%>"></p>
+  
+  <p>STE<br> <input type="text" name="ste" value="<%= @one.ste %>"></p>
+  <p>Date<br><input type="text" name="dd" value="<%= @one.dd %>"></p>
+  <p>Year<br><input type="text" name="yr" value="<%= @one.yr %>"></p>
+  <p>Marking<br><input type="text" name="marking" value="<%= @one.marking %>"><br></p>
+  <p>County<br><input type="text" name="county" value="<%= @one.county %>"></p>
+  <p>EMI?<br><input type="text" name="emi" value="<%= @one.emi %>"></p>
+  </div>
+  
+  
+  <div class="form-group" style="padding-top: 20px">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= hidden_field_tag 'id',id %>
+      <button type="submit" class="btn btn-primary">Update</button> 
+      <%#<button type="Reset" class="btn btn-secondary">Reset Form</button> %>
+    </div>
+  </div>
+
+  <% end %>
+</div>

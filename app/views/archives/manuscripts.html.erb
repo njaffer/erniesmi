@@ -10,21 +10,23 @@
 <p>Selecting a town will bring up the list of the known manuscript postal markings from that town. If the letter that you are interested in is in the erniesmichigan.com archives you can select the link and you will be taken to a list of letters from your letter’s date. You would then select the letter that you want to view. When you are done viewing all that you would like to know about that letter, you can follow the link back to the list of manuscript towns, and continue your selections. If additional manuscript cancels are known by collectors, please notify Greg Stone directly or through erniesmichigan@gmail.com</p>
  
 <div class="row" style="background-color: #e3e3e3;">
-	<div class="col"><strong>List of Cities</strong></div>
+	<div class="col"><strong>List of Towns</strong></div>
 </div>	
 <div class="row">
 <%
   count = 0
-  m_list = Manuscript.group(:town).distinct
+  m_list = Manuscript.select("DISTINCT(town)").order("town")
   m_list.each do |m|
-  count+=1
+  
   if (count%5==0)
 %>
 </div>
 <div class="row">
 <% end %>	
 	<div class="col">
-	  <% if !m.town.nil? %>
+	  <% if !m.town.nil? 
+	  	  count+=1
+	  %>
 		<%= link_to m.town , manuscripts_city_archives_path(:city => m.town)%>
 	  <% end %>		
 	</div>
