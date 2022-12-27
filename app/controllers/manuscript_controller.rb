@@ -21,5 +21,6 @@ class ManuscriptController < ApplicationController
     m.new_id = row_hash["12"]
     m.save!
     end
+        
   end  
 end

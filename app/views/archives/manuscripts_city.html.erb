@@ -1,8 +1,11 @@
 <% city = params["city"] %>
+<% access_level = check_current_access %>
 <div class="container">
 <p><strong>Towns with Manuscript Postal Markings</strong></p>
 
-<p><strong>Town: <%= city %></strong> <%= link_to "Back to Cities" , manuscripts_archives_path%></p>
+<p><strong>Town: <%= city %></strong> <%= link_to "Back to List of Towns" , manuscripts_archives_path%><% if (access_level==1) %><br>
+       <%= link_to "Add New Manuscript", edit_manuscripts_archives_path(:id => 0)  %>
+       <% end %>
  
 <div class="row" style="background-color: #e3e3e3;">
 	<div class="col">Owner</div>
@@ -27,8 +30,14 @@
   	j_str = "Private"
   end	
 %>
-<div class="row">
-	<div class="col"><%= j_str %></div>
+    <div class="row">
+	<div class="col">
+	<% if (access_level==1) %>
+       <%= link_to j_str, edit_manuscripts_archives_path(:id => m.id)  %>
+    <% else %>
+       <%= j_str %>
+    <% end %> 
+    </div>
 	<div class="col"><%= m.c_or_s %></div>
 	<div class="col"><%= m.ste %></div>
 	<div class="col"><%= m.town %></div>
