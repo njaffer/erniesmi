@@ -378,9 +378,11 @@ def advanced_search
   elsif ( params["no"])
       str = "pic_status=false "         
   end 
+  
+  if (str.length >0)  
+    str = str + "AND ptype=0"  
+  end
     
-  str = str + "AND ptype=0"  
-
   @archives = Archive.where(str).page params[:page]
   @total_archives = Archive.where(str)
 
