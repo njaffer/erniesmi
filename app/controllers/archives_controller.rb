@@ -379,6 +379,8 @@ def advanced_search
       str = "pic_status=false "         
   end 
     
+  str = str + "ptype=0"  
+  
   @archives = Archive.where(str).page params[:page]
   @total_archives = Archive.where(str)
 
