@@ -340,8 +340,32 @@ def advanced_search
    str =  str[0,str.length-3]
   end  
 
-  str = str + @con23 + " category LIKE '%" + @category + "%'" if (!@category.eql? "")
-  str = str + @con3 + " category LIKE '%" + @category1 + "%'" if (!@category1.eql? "") 
+  categorystr = " category LIKE '%" + @category + "%' OR category1 LIKE '%" + @category + "%' OR category2 LIKE '%" + @category + "%' OR category3 LIKE '%" + @category + "%'"
+  categorystr = categorystr + "OR category4 LIKE '%" + @category + "%' OR category5 LIKE '%" + @category + "%' OR category6 LIKE '%" + @category + "%' OR category7 LIKE '%" + @category + "%'"
+  categorystr = categorystr + "OR category8 LIKE '%" + @category + "%' OR category9 LIKE '%" + @category + "%' OR category10 LIKE '%" + @category + "%' OR category11 LIKE '%" + @category + "%'"
+  categorystr = categorystr + "OR category12 LIKE '%" + @category + "%' OR category13 LIKE '%" + @category + "%' OR category14 LIKE '%" + @category + "%' OR category15 LIKE '%" + @category + "%'"
+  categorystr = categorystr + "OR category16 LIKE '%" + @category + "%' OR category17 LIKE '%" + @category + "%' OR category18 LIKE '%" + @category + "%' OR category19 LIKE '%" + @category + "%' OR category20 LIKE '%" + @category + "%'"
+  
+  categorystr1 = " category LIKE '%" + @category1 + "%' OR category1 LIKE '%" + @category1 + "%' OR category2 LIKE '%" + @category1 + "%' OR category3 LIKE '%" + @category1 + "%'"
+  categorystr1 = categorystr1 + "OR category4 LIKE '%" + @category1 + "%' OR category5 LIKE '%" + @category1 + "%' OR category6 LIKE '%" + @category1 + "%' OR category7 LIKE '%" + @category1 + "%'"
+  categorystr1 = categorystr1 + "OR category8 LIKE '%" + @category1 + "%' OR category9 LIKE '%" + @category1 + "%' OR category10 LIKE '%" + @category1 + "%' OR category11 LIKE '%" + @category1 + "%'"
+  categorystr1 = categorystr1 + "OR category12 LIKE '%" + @category1 + "%' OR category13 LIKE '%" + @category1 + "%' OR category14 LIKE '%" + @category1 + "%' OR category15 LIKE '%" + @category1 + "%'"
+  categorystr1 = categorystr1 + "OR category16 LIKE '%" + @category1 + "%' OR category17 LIKE '%" + @category1 + "%' OR category18 LIKE '%" + @category1 + "%' OR category19 LIKE '%" + @category1 + "%' OR category20 LIKE '%" + @category1 + "%'"
+    
+  categorystr2 = " category LIKE '%" + @category2 + "%' OR category1 LIKE '%" + @category2 + "%' OR category2 LIKE '%" + @category2 + "%' OR category3 LIKE '%" + @category2 + "%'"
+  categorystr2 = categorystr2 + "OR category4 LIKE '%" + @category2 + "%' OR category5 LIKE '%" + @category2 + "%' OR category6 LIKE '%" + @category2 + "%' OR category7 LIKE '%" + @category2 + "%'"
+  categorystr2 = categorystr2 + "OR category8 LIKE '%" + @category2 + "%' OR category9 LIKE '%" + @category2 + "%' OR category10 LIKE '%" + @category2 + "%' OR category11 LIKE '%" + @category2 + "%'"
+  categorystr2 = categorystr2 + "OR category12 LIKE '%" + @category2 + "%' OR category13 LIKE '%" + @category2 + "%' OR category14 LIKE '%" + @category2 + "%' OR category15 LIKE '%" + @category2 + "%'"
+  categorystr2 = categorystr2 + "OR category16 LIKE '%" + @category2 + "%' OR category17 LIKE '%" + @category2 + "%' OR category18 LIKE '%" + @category2 + "%' OR category19 LIKE '%" + @category2 + "%' OR category20 LIKE '%" + @category2 + "%'"
+   
+  categorystr3 = " category LIKE '%" + @category3 + "%' OR category1 LIKE '%" + @category3 + "%' OR category2 LIKE '%" + @category3 + "%' OR category3 LIKE '%" + @category3 + "%'"
+  categorystr3 = categorystr3 + "OR category4 LIKE '%" + @category3 + "%' OR category5 LIKE '%" + @category3 + "%' OR category6 LIKE '%" + @category3 + "%' OR category7 LIKE '%" + @category3 + "%'"
+  categorystr3 = categorystr3 + "OR category8 LIKE '%" + @category3 + "%' OR category9 LIKE '%" + @category3 + "%' OR category10 LIKE '%" + @category3 + "%' OR category11 LIKE '%" + @category3 + "%'"
+  categorystr3 = categorystr3 + "OR category12 LIKE '%" + @category3 + "%' OR category13 LIKE '%" + @category3 + "%' OR category14 LIKE '%" + @category3 + "%' OR category15 LIKE '%" + @category3 + "%'"
+  categorystr3 = categorystr3 + "OR category16 LIKE '%" + @category3 + "%' OR category17 LIKE '%" + @category3 + "%' OR category18 LIKE '%" + @category3 + "%' OR category19 LIKE '%" + @category3 + "%' OR category20 LIKE '%" + @category3 + "%'"
+
+  str = str + @con23 + categorystr if (!@category.eql? "")
+  str = str + @con3 +  categorystr1 if (!@category1.eql? "") 
   str = str + @con31 + " category LIKE '%" + @category2 + "%'" if (!@category2.eql? "")  
   str = str + @con32 + " category LIKE '%" + @category3 + "%'" if (!@category3.eql? "")
 
@@ -381,10 +405,13 @@ def advanced_search
   
   if (str.length >0)  
     str = str + "AND ptype=0"  
+   # str = str + ".order('pyear')"
+    
   end
     
+  
   @archives = Archive.where(str).page params[:page]
-  @total_archives = Archive.where(str)
+  @total_archives = Archive.where(str).order("pyear")
 
   if (@total_archives.nil?)
   	@total_archives_count =0
