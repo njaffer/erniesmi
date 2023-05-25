@@ -405,13 +405,13 @@ def advanced_search
   
   if (str.length >0)  
     str = str + "AND ptype=0"  
-   # str = str + ".order('pyear')"
+   # str = str 
     
   end
     
   
-  @archives = Archive.where(str).page params[:page]
-  @total_archives = Archive.where(str).order("pyear")
+  @archives = Archive.where(str).order("pyear").page params[:page]
+  @total_archives = Archive.where(str)
 
   if (@total_archives.nil?)
   	@total_archives_count =0
@@ -430,9 +430,10 @@ def search
  	params["back"] = 0
   searchterm = params["str"] 
   if (searchterm.eql? "")
-    str = "pic_status=true"
-    @archives = Archive.where(str).page params[:page]
+    str = "pic_status=true AND ptype=0 "
+    @archives = Archive.where(str).order("pyear").page params[:page]
     @total_archives = Archive.where(str)
+
   else
     str = "caption LIKE '%"+searchterm+"%' OR county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'" 
     str = str + "OR city LIKE '%"+searchterm+"%' OR city1 LIKE '%"+searchterm+"%' OR city2 LIKE '%"+searchterm+"%' OR city3 LIKE '%"+searchterm+"%'"
@@ -440,9 +441,9 @@ def search
     str = str + "OR category6 LIKE '%"+searchterm+"%' OR category7 LIKE '%"+searchterm+"%' OR category8 LIKE '%"+searchterm+"%' OR category9 LIKE '%"+searchterm+"%' OR category10 LIKE '%"+searchterm+"%'"
     str = str + "OR category11 LIKE '%"+searchterm+"%' OR category12 LIKE '%"+searchterm+"%' OR category13 LIKE '%"+searchterm+"%' OR category14 LIKE '%"+searchterm+"%' OR category15 LIKE '%"+searchterm+"%' OR category16 LIKE '%"+searchterm+"%'"
     str = str + "OR category17 LIKE '%"+searchterm+"%' OR category18 LIKE '%"+searchterm+"%' OR category19 LIKE '%"+searchterm+"%' OR category20 LIKE '%"+searchterm+"%'"
-    str = str + "AND pic_status=true"
+    str = str + "AND ptype=0 AND pic_status=true"
     @total_archives = Archive.where(str)
-    @archives = Archive.where(str).page params[:page]
+    @archives = Archive.where(str).order("pyear").page params[:page]
   end 
  else	
   countysearch = params["countysearch"]
@@ -458,30 +459,30 @@ def search
   if ( (!countysearch.nil?) || ( (county != "") && (!county.eql? nil)) )
     searchterm = params["county"]
   str = "county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'"   
-  str = str + "AND pic_status=true"
+  str = str + "AND ptype=0 AND pic_status=true"
   @total_archives = Archive.where(str)
-  @archives = Archive.where(str).page params[:page]
+  @archives = Archive.where(str).order("pyear").page params[:page]
 
   elsif ( city != "" && (!city.eql? nil) ) 
     searchterm = params["city"]
   str = "city LIKE '%"+searchterm+"%' OR city1 LIKE '%"+searchterm+"%' OR city2 LIKE '%"+searchterm+"%' OR city3 LIKE '%"+searchterm+"%'"
   str = str + " OR city4 LIKE '%"+searchterm+"%' OR city5 LIKE '%"+searchterm+"%' OR city6 LIKE '%"+searchterm+"%' OR city7 LIKE '%"+searchterm+"%' OR city8 LIKE '%"+searchterm+"%' OR city9 LIKE '%"+searchterm+"%'"    
-  str = str + "AND pic_status=true"
+  str = str + "AND ptype=0 AND pic_status=true"
   @total_archives = Archive.where(str)
-  @archives = Archive.where(str).page params[:page]
+  @archives = Archive.where(str).order("pyear").page params[:page]
 
   elsif ( category != "" && (!category.eql? nil) ) 
     searchterm = params["category"]
     searchterm = searchterm.gsub("'", "''")
   str = "category LIKE '%"+searchterm+"%' OR category1 LIKE '%"+searchterm+"%' OR category2 LIKE '%"+searchterm+"%' OR category3 LIKE '%"+searchterm+"%'"
   str = str + " OR category4 LIKE '%"+searchterm+"%' OR category5 LIKE '%"+searchterm+"%' OR category6 LIKE '%"+searchterm+"%' OR category7 LIKE '%"+searchterm+"%' OR category8 LIKE '%"+searchterm+"%' OR category9 LIKE '%"+searchterm+"%'"    
-  str = str + "AND pic_status=true"
+  str = str + "AND ptype=0 AND pic_status=true"
   @total_archives = Archive.where(str)
-  @archives = Archive.where(str).page params[:page]
+  @archives = Archive.where(str).order("pyear").page params[:page]
  
   elsif (searchterm.eql? "")
-    str = "pic_status=true"
-    @archives = Archive.where(str).page params[:page]
+    str = "ptype=0 AND pic_status=true"
+    @archives = Archive.where(str).order("pyear").page params[:page]
     @total_archives = Archive.where(str)
   else
     str = "caption LIKE '%"+searchterm+"%' OR county LIKE '%"+searchterm+"%' OR county1 LIKE '%"+searchterm+"%' OR county2 LIKE '%"+searchterm+"%'OR county3 LIKE '%"+searchterm+"%'" 
@@ -492,7 +493,7 @@ def search
     str = str + "OR category17 LIKE '%"+searchterm+"%' OR category18 LIKE '%"+searchterm+"%' OR category19 LIKE '%"+searchterm+"%' OR category20 LIKE '%"+searchterm+"%'"
     str = str + "AND pic_status=true"
     @total_archives = Archive.where(str)
-    @archives = Archive.where(str).page params[:page]
+    @archives = Archive.where(str).order("pyear").page params[:page]
   end 
   
   end	 
