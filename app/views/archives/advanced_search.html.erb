@@ -1,4 +1,14 @@
 
+  <% @category = @category.gsub("''", "'")  %>
+  <% @category1 = @category1.gsub("''", "'")  %>
+  <% @category2 = @category2.gsub("''", "'")  %>
+  <% @category3 = @category3.gsub("''", "'")  %>
+  <% @category4 = @category4.gsub("''", "'")  %>
+  <% @category5 = @category5.gsub("''", "'")  %>
+  <% @category6 = @category6.gsub("''", "'")  %>
+  <% @category7 = @category7.gsub("''", "'")  %>
+  <% @category8 = @category8.gsub("''", "'")  %>
+  <% @category9 = @category9.gsub("''", "'")  %>
 
 <div class="container">
 	<h2>Advanced Search</h2>
@@ -44,8 +54,14 @@
     <div class="col-sm-11" align="left"> 
      <%= select_tag :category, options_from_collection_for_select(@acategory, "name", "name", @category) , :include_blank => true  %> <%= select_tag "con3", options_for_select(@connector,@con3)  %> 
      <%= select_tag :category1, options_from_collection_for_select(@acategory, "name", "name", @category1) , :include_blank => true  %><%= select_tag "con31", options_for_select(@connector,@con31)  %> 
-     <%= select_tag :category2, options_from_collection_for_select(@acategory, "name", "name", @category2) , :include_blank => true  %><%= select_tag "con32", options_for_select(@connector,@con32)  %>
-      <%= select_tag :category3, options_from_collection_for_select(@acategory, "name", "name", @category3) , :include_blank => true  %>
+     <%= select_tag :category2, options_from_collection_for_select(@acategory, "name", "name", @category2) , :include_blank => true  %><%= select_tag "con32", options_for_select(@connector,@con32)  %> 
+      <%= select_tag :category3, options_from_collection_for_select(@acategory, "name", "name", @category3) , :include_blank => true  %><%= select_tag "con33", options_for_select(@connector,@con33)  %> 
+     <%= select_tag :category4, options_from_collection_for_select(@acategory, "name", "name", @category4) , :include_blank => true  %> <%= select_tag "con34", options_for_select(@connector,@con34)  %> 
+     <%= select_tag :category5, options_from_collection_for_select(@acategory, "name", "name", @category5) , :include_blank => true  %><%= select_tag "con35", options_for_select(@connector,@con35)  %> 
+     <%= select_tag :category6, options_from_collection_for_select(@acategory, "name", "name", @category6) , :include_blank => true  %><%= select_tag "con36", options_for_select(@connector,@con36)  %>
+      <%= select_tag :category7, options_from_collection_for_select(@acategory, "name", "name", @category7) , :include_blank => true  %><%= select_tag "con37", options_for_select(@connector,@con37)  %> 
+      <%= select_tag :category8, options_from_collection_for_select(@acategory, "name", "name", @category8) , :include_blank => true  %><%= select_tag "con38", options_for_select(@connector,@con38)  %>
+      <%= select_tag :category9, options_from_collection_for_select(@acategory, "name", "name", @category9) , :include_blank => true  %>
     </div>
      </div>
      <% if (access_level==1) %> 
@@ -85,8 +101,9 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-primary">Search Archives</button> 
-      <%#<button type="Reset" class="btn btn-secondary">Reset Form</button> %>
-    </div>
+      <%#<button type="Reset" class="btn btn-secondary">Reset Form</button> %>&nbsp;
+       <%= link_to 'New Search', advanced_search_archives_path %>
+       </div>
   </div>
 <% end %>
 </div>
@@ -175,6 +192,7 @@ if (a.fname.nil?)
         <%=a.city8 %> <% if ((!a.city9.eql? "") && (!a.city9.eql? nil)) %>,<%end%> 
         <%=a.city9 %> <% if ((!a.city10.eql? "") && (!a.city10.eql? nil)) %>,<%end%> 
         <%=a.city10 %><br>
+
       <b>Category:</b> 
         <%=a.category1 %> <% if ((!a.category2.eql? "") && (!a.category2.eql? nil)) %>,<%end%> 
         <%=a.category2 %> <% if ((!a.category3.eql? "") && (!a.category3.eql? nil)) %>,<%end%> 
