@@ -261,6 +261,7 @@ def advanced_search
     @city3 = "" if @city3.nil?
 
     @con011 = params["con011"]
+    @con111 = params["con111"]
     @con1 = params["con1"]
     @con11 = params["con11"]
     @con12 = params["con12"]
@@ -308,6 +309,7 @@ def advanced_search
     itemid = params["itemid"]
     itemid_new = params["itemid_new"]
     @searchterm = params["searchterm"]
+    @lyear = params["lyear"]
 
     if itemid.nil?
       itemid = ""
@@ -319,6 +321,10 @@ def advanced_search
 
     if @searchterm.nil?
       @searchterm = ""
+    end
+
+    if @lyear.nil?
+      @lyear = ""
     end
   
     if @con011.nil?
@@ -339,6 +345,9 @@ def advanced_search
       str =  "caption LIKE '%"+@searchterm+"%'"+ @con011
     end  
 
+    if (@lyear.length > 1)
+      str =  str + " pyear LIKE '%"+@lyear+"%'"+ @con111
+    end 
     str = str +  " county LIKE '%" + @county + "%'" if (!@county.eql? "")
     str = str + @con1 + " county LIKE '%"+ @county1 + "%'"  if (!@county1.eql? "")
     str = str + @con11+ " county LIKE '%"+ @county2 + "%'"  if (!@county2.eql? "")
