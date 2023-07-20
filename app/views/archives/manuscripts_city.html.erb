@@ -47,7 +47,7 @@
 	<div class="col"><%= m.marking %></div>
 	<div class="col"><%= m.county %></div>
 	<div class="col"><% if (m.emi==1) %>Yes<% else %>No<% end %>
-	<% if (m.emi==1) %><%= link_to "View",letter_archives_path(:id => m.old_id)%><%end%></div>
+	<% if (m.emi==1) %><%= link_to "View",letter_archives_path(:id => m.new_id)%><%end%></div>
 </div>
 <%  	
   end	
