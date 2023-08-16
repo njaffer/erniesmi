@@ -812,8 +812,18 @@ def old_import
     end
 
   def letter
-  	id = params[:id] 
-  	nextpic  = params[:next]
+
+    old_id = params[:old_id]
+  
+    if (!old_id.nil?)
+      a= Archive.where("old_id=?",old_id)
+      @a = ""
+      @a = a.first if !a.nil?
+      id = @a.id
+    else  
+  	  id = params[:id] 
+  	end
+    nextpic  = params[:next]
   	prevpic  = params[:prev]
   	
   	if nextpic.eql? "1"
