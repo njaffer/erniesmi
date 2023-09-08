@@ -66,6 +66,7 @@ def editsave
   a.cover_page = params["cover_page"]
   a.price = params["pprice"]
   a.cost = params["pcost"]
+  a.ptype = params["pid"]
     
     
     a.county1 = params["county1"]
@@ -584,6 +585,36 @@ def batchsave
  
 
 end
+
+def add_files 
+ #foldername = params[:foldername]
+
+ foldername = "/Users/nabeelajaffer/Documents/erniesmi/"
+ filenames = Dir[foldername]
+ byebug
+ filenames.each do |f|
+  puts f 
+ end 
+end
+
+def import_new
+
+  uploaded_csv = params[:file]  
+  ppath = params["ppath"]
+  csv_text = File.read(uploaded_csv)
+  csv = CSV.parse(csv_text, :headers => true)
+  csv.each do |row|
+    row_hash = row.to_hash
+    title = row_hash["title"];
+    
+    a= Archive.new
+    a.fname = title
+    a.old_id = 0
+    a.path = ppath
+    a.ptype =  0
+    a.save!
+  end 
+end  
 
 def import
   uploaded_csv = params[:file]  
