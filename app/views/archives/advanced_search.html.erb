@@ -218,12 +218,19 @@ if (a.fname.nil?)
         <br>
       
       <%
-          associated = Archive.where("ptype=?",a.old_id)
-          associated_count = associated.count
-          if (associated_count==0  && a.ptype != nil && a.ptype >0)
-            associated = Archive.where("ptype=?",a.ptype)
+          if (a.old_id>0)
+            check_id = a.old_id
+          else
+            check_id = a.id
+          end 
+
+            associated = Archive.where("ptype=?",check_id)
             associated_count = associated.count
-          end  
+            if (associated_count==0  && a.ptype != nil && a.ptype >0)
+              associated = Archive.where("ptype=?",a.ptype)
+              associated_count = associated.count
+            end
+            
         %>
         <b>Associated Pages: </b><%=associated_count%>  
       

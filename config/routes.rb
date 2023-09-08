@@ -9,8 +9,8 @@ get 'index' => "home#index"
 
 resources :archives do
     collection do
-      get :index, :batchupload, :cat, :batch, :new, :advanced_search, :test, :search, :letter, :county, :city, :category, :edit, :missionary, :edit_manuscripts, :manuscripts, :manuscripts_city, :genealogy,:genealogy_county,:guide
-      post  :save, :import, :searchlist, :search, :advanced_search, :editsave, :batchsave
+      get :index, :add_files, :import_txt, :batchupload, :cat, :batch, :new, :advanced_search, :test, :search, :letter, :county, :city, :category, :edit, :missionary, :edit_manuscripts, :manuscripts, :manuscripts_city, :genealogy,:genealogy_county,:guide
+      post  :save, :import, :import_new, :searchlist, :search, :advanced_search, :editsave, :batchsave
     end
   end 
 
