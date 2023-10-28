@@ -49,7 +49,7 @@
 	 %>
 	<% url = image_url(fname_url)%>
   <%
-  fname_url_encoded = fname_url.gsub!('%20', ' ')
+  #fname_url_encoded = fname_url.gsub!('%20', ' ')
   %> 
 	<p align="left">
     <div id="seadragon-viewer" style="width:1000px; height:600px;"></div>
@@ -189,7 +189,7 @@ var viewer = OpenSeadragon({
   showRotationControl: true,
   tileSources: {
         type: 'image',
-        url:  '<%= fname_url_encoded %>'
+        url:  '<%= fname_url %>'
     }
 });
 </script>
