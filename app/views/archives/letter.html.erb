@@ -48,10 +48,12 @@
    end  
 	 %>
 	<% url = image_url(fname_url)%>
-
+  <%
+  fname_url_encoded = fname_url.gsub!('%20', ' ')
+  %> 
 	<p align="left">
-    
-  <%= image_tag(url, style: 'height:60%;width:60%;') %>
+    <div id="seadragon-viewer" style="width:1000px; height:600px;"></div>
+  <%#= image_tag(url, style: 'height:60%;width:60%;') %>
     
   </p>
 	<p><b>Year:</b> <%= @a.pyear %> <br>
@@ -187,7 +189,7 @@ var viewer = OpenSeadragon({
   showRotationControl: true,
   tileSources: {
         type: 'image',
-        url:  '<%= fname_url %>'
+        url:  '<%= fname_url_encoded %>'
     }
 });
 </script>
