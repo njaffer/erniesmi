@@ -480,7 +480,7 @@ def advanced_search
       str = "pic_status=false "         
   end 
   
-  if (str.length >0)  
+  if ( (str.length >0) && (itemid.length < 1))
     str = str + "AND ptype=0"  
    # str = str 
     
