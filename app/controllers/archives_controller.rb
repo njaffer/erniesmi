@@ -502,13 +502,12 @@ end
 
 def search 
 
-#params[:page] = 100
  if (params["back"].eql? "1")
  	params["back"] = 0
   searchterm = params["str"] 
   if (searchterm.eql? "")
     str = "pic_status=true AND ptype=0 "
-   @archives = Archive.where(str).order("pdate").page params[:page]
+    @archives = Archive.where(str).order("pdate").page params[:page]
     @total_archives = Archive.where(str)
 
   else
