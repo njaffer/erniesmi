@@ -15,6 +15,7 @@ end
   <%= form_tag(save_manuscript_index_path, :enctype =>"multipart/form-data") do %>
 
   <div class="card" style="width: 45rem; padding-left: 10px;">
+  <p>Mnum (Private or Public) <br><input name="mnum" value="<%= @one.mnum %>"></p>   
   <p>Town <br><input name="town" value="<%= @one.town %>" size=50></p>  
     <p>Cover/Stampless<br><input name="c_or_s" type="text" value="<%=@one.c_or_s%>"></p>
   
