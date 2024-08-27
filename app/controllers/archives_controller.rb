@@ -501,7 +501,7 @@ def advanced_search
 end	
 
 def search 
-  
+
  if (params["back"].eql? "1")
  	params["back"] = 0
   searchterm = params["str"] 
