@@ -6,7 +6,7 @@
    else 
     flag = true
     %>
-    <%= paginate $shortlist, window: 3 %>
+    <%= paginate $shortlist, window: 1 %>
   <% end %>  
   <% if !($archivelist.eql? nil) 
   count = $archivelist.count
